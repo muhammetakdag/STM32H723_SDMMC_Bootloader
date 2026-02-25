@@ -27,6 +27,12 @@
 
   */
 
+/**
+ * @brief This function erase the flash.
+ * @attention Any modification in this function not recommended.
+ * @param None.
+ * @retVal Status of operation.
+ */
 static HAL_StatusTypeDef s_erase_flash(void) {
   HAL_StatusTypeDef status = HAL_OK;
 
@@ -40,6 +46,7 @@ static HAL_StatusTypeDef s_erase_flash(void) {
     flash_erase_init.VoltageRange = FLASH_VOLTAGE_RANGE_3;
     flash_erase_init.Sector = FLASH_SECTOR_1;
     flash_erase_init.NbSectors = 7U;
+    flash_erase_init.Banks = 1U;
 
     status = HAL_FLASHEx_Erase(&flash_erase_init, &sector_error);
 
@@ -50,6 +57,13 @@ static HAL_StatusTypeDef s_erase_flash(void) {
 
   return status;
 }
+
+/**
+ * @brief This function copy the binary from SD Card to flash.
+ * @attention Any modification in this function not recommended.
+ * @param None.
+ * @retVal None.
+ */
 
 static void s_copy_fw_to_flash(void) {
   UINT readed_byte_count = 0U;
@@ -87,6 +101,12 @@ static void s_copy_fw_to_flash(void) {
   }
 }
 
+/**
+ * @brief This function mount the SD Card.
+ * @param None.
+ * @retVal None.
+ */
+
 static void s_mount_sd_card(void) {
   if (FR_OK == f_mount(&g_file_system, "", 1U)) {
     for (uint8_t i = 0U; i < 10U; ++i) {
@@ -98,11 +118,30 @@ static void s_mount_sd_card(void) {
   }
 }
 
-static void s_unmount_sd_card(void) { f_mount(NULL, "", 1U); }
+/**
+ * @brief This function unmount the SD Card.
+ * @param None.
+ * @retVal None.
+ */
 
-static void s_jump_to_app(void) {
+static inline void s_unmount_sd_card(void) { f_mount(NULL, "", 1U); }
+
+/*
+  ==============================================================================
+                      ##### GLOBAL FUNCTION IMPLEMENTATIONS #####
+  ==============================================================================
+
+*/
+
+/**
+ * @brief This function jump to app start address.
+ * @param None.
+ * @retVal None.
+ */
+
+void jump_to_app(void) {
   void (*app_reset_handler)(void) =
-      (void*)(*((volatile uint32_t*)(ETX_APP_FLASH_ADDR + 4U)));
+      (void*)(*((volatile uint32_t*)(FW_START_ADDRESS + 4U)));
 
   __disable_irq();
 
@@ -118,7 +157,29 @@ static void s_jump_to_app(void) {
 
   SCB->VTOR = FW_START_ADDRESS;
 
-  __set_MSP(*(volatile uint32_t*)ETX_APP_FLASH_ADDR);
+  __set_MSP(*(volatile uint32_t*)FW_START_ADDRESS);
 
   app_reset_handler();
+}
+
+/**
+ * @brief This function runs the bootloader sequence.
+ * @param None.
+ * @retVal None.
+ */
+void run_bootloader(void) {
+  HAL_StatusTypeDef status = HAL_OK;
+
+  s_mount_sd_card();
+  status = s_erase_flash();
+
+  if (HAL_OK == status) {
+    s_copy_fw_to_flash();
+    s_jump_to_app();
+    s_unmount_sd_card();
+    HAL_Delay(100U);
+    jump_to_app();
+  } else {
+    /*TODO: Give error with led.*/
+  }
 }

@@ -33,9 +33,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
-#define FW_START_ADDRESS 0x8020000U
-#define FW_FILE_NAME "firmware.bin"
-#define FW_BUFFER_SIZE 1024U
+
 
 /* USER CODE END PTD */
 
