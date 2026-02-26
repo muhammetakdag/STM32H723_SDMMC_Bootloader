@@ -45,7 +45,7 @@ MEMORY
 {
   ITCMRAM (xrw)    : ORIGIN = 0x00000000,   LENGTH = 64K
   DTCMRAM (xrw)    : ORIGIN = 0x20000000,   LENGTH = 128K
-  FLASH    (rx)    : ORIGIN = 0x08000000,   LENGTH = 1024K
+  FLASH    (rx)    : ORIGIN = 0x08000000,   LENGTH = 128k
   RAM_D1  (xrw)    : ORIGIN = 0x24000000,   LENGTH = 320K
   RAM_D2  (xrw)    : ORIGIN = 0x30000000,   LENGTH = 32K
   RAM_D3  (xrw)    : ORIGIN = 0x38000000,   LENGTH = 16K
@@ -54,6 +54,7 @@ MEMORY
 /* Define output sections */
 SECTIONS
 {
+
   /* The startup code goes first into FLASH */
   .isr_vector :
   {
@@ -65,6 +66,7 @@ SECTIONS
   /* The program code and other data goes into FLASH */
   .text :
   {
+  
     . = ALIGN(4);
     *(.text)           /* .text sections (code) */
     *(.text*)          /* .text* sections (code) */
@@ -77,6 +79,7 @@ SECTIONS
 
     . = ALIGN(4);
     _etext = .;        /* define a global symbols at end of code */
+        
   } >FLASH
 
   /* Constant data goes into FLASH */
