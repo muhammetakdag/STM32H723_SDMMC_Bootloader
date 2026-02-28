@@ -61,6 +61,8 @@ void Error_Handler(void);
 #define SDMMC2_CARD_DET_GPIO_Port GPIOC
 #define BOOTLOADER_PIN_Pin GPIO_PIN_14
 #define BOOTLOADER_PIN_GPIO_Port GPIOC
+#define BOOTLOADER_STATUS_LED_Pin GPIO_PIN_14
+#define BOOTLOADER_STATUS_LED_GPIO_Port GPIOG
 
 /* USER CODE BEGIN Private defines */
 

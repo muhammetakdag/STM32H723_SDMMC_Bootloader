@@ -21,6 +21,7 @@
 
 #include "fatfs.h"
 #include "gpio.h"
+#include "mbedtls.h"
 #include "sdmmc.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -32,8 +33,6 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
-
 
 /* USER CODE END PTD */
 
@@ -52,7 +51,8 @@
 /* USER CODE BEGIN PV */
 
 FATFS g_file_system;
-FIL g_file;
+FIL g_fw_file;
+FIL g_hash_file;
 
 /* USER CODE END PV */
 
@@ -76,11 +76,9 @@ int main(void) {
 
   /* USER CODE END 1 */
 
-  /* MCU
-   * Configuration--------------------------------------------------------*/
+  /* MCU Configuration--------------------------------------------------------*/
 
-  /* Reset of all peripherals, Initializes the Flash interface and the
-   * Systick.
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick.
    */
   HAL_Init();
 
@@ -99,6 +97,7 @@ int main(void) {
   MX_GPIO_Init();
   MX_SDMMC2_SD_Init();
   MX_FATFS_Init();
+  MX_MBEDTLS_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -194,7 +193,7 @@ void Error_Handler(void) {
  * @param  line: assert_param error line source number
  * @retval None
  */
-void assert_failed(uint8_t* file, uint32_t line) {
+void assert_failed(uint8_t *file, uint32_t line) {
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line
      number, ex: printf("Wrong parameters value: file %s on line %d\r\n",
