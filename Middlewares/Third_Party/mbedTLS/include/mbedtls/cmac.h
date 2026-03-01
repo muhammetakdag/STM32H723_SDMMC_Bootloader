@@ -59,15 +59,15 @@ extern "C" {
  */
 struct mbedtls_cmac_context_t
 {
-    /** The internal state of the CMAC algorithm.  */
-    unsigned char       state[MBEDTLS_CIPHER_BLKSIZE_MAX];
+	/** The internal state of the CMAC algorithm.  */
+	unsigned char state[MBEDTLS_CIPHER_BLKSIZE_MAX];
 
-    /** Unprocessed data - either data that was not block aligned and is still
-     *  pending processing, or the final block. */
-    unsigned char       unprocessed_block[MBEDTLS_CIPHER_BLKSIZE_MAX];
+	/** Unprocessed data - either data that was not block aligned and is still
+	 *  pending processing, or the final block. */
+	unsigned char unprocessed_block[MBEDTLS_CIPHER_BLKSIZE_MAX];
 
-    /** The length of data pending processing. */
-    size_t              unprocessed_len;
+	/** The length of data pending processing. */
+	size_t unprocessed_len;
 };
 
 #else  /* !MBEDTLS_CMAC_ALT */
@@ -90,8 +90,8 @@ struct mbedtls_cmac_context_t
  * \return              \c 0 on success.
  * \return              A cipher-specific error code on failure.
  */
-int mbedtls_cipher_cmac_starts( mbedtls_cipher_context_t *ctx,
-                                const unsigned char *key, size_t keybits );
+int mbedtls_cipher_cmac_starts(mbedtls_cipher_context_t *ctx,
+		const unsigned char *key, size_t keybits);
 
 /**
  * \brief               This function feeds an input buffer into an ongoing CMAC
@@ -109,8 +109,8 @@ int mbedtls_cipher_cmac_starts( mbedtls_cipher_context_t *ctx,
  * \return             #MBEDTLS_ERR_MD_BAD_INPUT_DATA
  *                     if parameter verification fails.
  */
-int mbedtls_cipher_cmac_update( mbedtls_cipher_context_t *ctx,
-                                const unsigned char *input, size_t ilen );
+int mbedtls_cipher_cmac_update(mbedtls_cipher_context_t *ctx,
+		const unsigned char *input, size_t ilen);
 
 /**
  * \brief               This function finishes the CMAC operation, and writes
@@ -127,8 +127,8 @@ int mbedtls_cipher_cmac_update( mbedtls_cipher_context_t *ctx,
  * \return              #MBEDTLS_ERR_MD_BAD_INPUT_DATA
  *                      if parameter verification fails.
  */
-int mbedtls_cipher_cmac_finish( mbedtls_cipher_context_t *ctx,
-                                unsigned char *output );
+int mbedtls_cipher_cmac_finish(mbedtls_cipher_context_t *ctx,
+		unsigned char *output);
 
 /**
  * \brief               This function prepares the authentication of another
@@ -144,7 +144,7 @@ int mbedtls_cipher_cmac_finish( mbedtls_cipher_context_t *ctx,
  * \return              #MBEDTLS_ERR_MD_BAD_INPUT_DATA
  *                      if parameter verification fails.
  */
-int mbedtls_cipher_cmac_reset( mbedtls_cipher_context_t *ctx );
+int mbedtls_cipher_cmac_reset(mbedtls_cipher_context_t *ctx);
 
 /**
  * \brief               This function calculates the full generic CMAC
@@ -168,10 +168,9 @@ int mbedtls_cipher_cmac_reset( mbedtls_cipher_context_t *ctx );
  * \return              #MBEDTLS_ERR_MD_BAD_INPUT_DATA
  *                      if parameter verification fails.
  */
-int mbedtls_cipher_cmac( const mbedtls_cipher_info_t *cipher_info,
-                         const unsigned char *key, size_t keylen,
-                         const unsigned char *input, size_t ilen,
-                         unsigned char *output );
+int mbedtls_cipher_cmac(const mbedtls_cipher_info_t *cipher_info,
+		const unsigned char *key, size_t keylen, const unsigned char *input,
+		size_t ilen, unsigned char *output);
 
 #if defined(MBEDTLS_AES_C)
 /**

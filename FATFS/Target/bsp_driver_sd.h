@@ -1,21 +1,21 @@
 /* USER CODE BEGIN Header */
 /**
  ******************************************************************************
-  * @file    bsp_driver_sd.h (based on stm32h743i_eval_sd.h)
-  * @brief   This file contains the common defines and functions prototypes for
-  *          the bsp_driver_sd.c driver.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2026 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ * @file    bsp_driver_sd.h (based on stm32h743i_eval_sd.h)
+ * @brief   This file contains the common defines and functions prototypes for
+ *          the bsp_driver_sd.c driver.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2026 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -32,21 +32,21 @@
 
 /* Exported types --------------------------------------------------------*/
 /**
-  * @brief SD Card information structure
-  */
+ * @brief SD Card information structure
+ */
 #define BSP_SD_CardInfo HAL_SD_CardInfoTypeDef
 
 /* Exported constants --------------------------------------------------------*/
 /**
-  * @brief  SD status structure definition
-  */
+ * @brief  SD status structure definition
+ */
 #define   MSD_OK                        ((uint8_t)0x00)
 #define   MSD_ERROR                     ((uint8_t)0x01)
 #define   MSD_ERROR_SD_NOT_PRESENT      ((uint8_t)0x02)
 
 /**
-  * @brief  SD transfer state definition
-  */
+ * @brief  SD transfer state definition
+ */
 #define   SD_TRANSFER_OK                ((uint8_t)0x00)
 #define   SD_TRANSFER_BUSY              ((uint8_t)0x01)
 
@@ -60,20 +60,24 @@
 /* Exported functions --------------------------------------------------------*/
 uint8_t BSP_SD_Init(void);
 uint8_t BSP_SD_ITConfig(void);
-uint8_t BSP_SD_ReadBlocks(uint32_t *pData, uint32_t ReadAddr, uint32_t NumOfBlocks, uint32_t Timeout);
-uint8_t BSP_SD_WriteBlocks(uint32_t *pData, uint32_t WriteAddr, uint32_t NumOfBlocks, uint32_t Timeout);
-uint8_t BSP_SD_ReadBlocks_DMA(uint32_t *pData, uint32_t ReadAddr, uint32_t NumOfBlocks);
-uint8_t BSP_SD_WriteBlocks_DMA(uint32_t *pData, uint32_t WriteAddr, uint32_t NumOfBlocks);
+uint8_t BSP_SD_ReadBlocks(uint32_t *pData, uint32_t ReadAddr,
+		uint32_t NumOfBlocks, uint32_t Timeout);
+uint8_t BSP_SD_WriteBlocks(uint32_t *pData, uint32_t WriteAddr,
+		uint32_t NumOfBlocks, uint32_t Timeout);
+uint8_t BSP_SD_ReadBlocks_DMA(uint32_t *pData, uint32_t ReadAddr,
+		uint32_t NumOfBlocks);
+uint8_t BSP_SD_WriteBlocks_DMA(uint32_t *pData, uint32_t WriteAddr,
+		uint32_t NumOfBlocks);
 uint8_t BSP_SD_Erase(uint32_t StartAddr, uint32_t EndAddr);
 uint8_t BSP_SD_GetCardState(void);
-void    BSP_SD_GetCardInfo(BSP_SD_CardInfo *CardInfo);
+void BSP_SD_GetCardInfo(BSP_SD_CardInfo *CardInfo);
 uint8_t BSP_SD_IsDetected(void);
 
 /* These functions can be modified in case the current settings (e.g. DMA stream)
-   need to be changed for specific application needs */
-void    BSP_SD_AbortCallback(void);
-void    BSP_SD_WriteCpltCallback(void);
-void    BSP_SD_ReadCpltCallback(void);
+ need to be changed for specific application needs */
+void BSP_SD_AbortCallback(void);
+void BSP_SD_WriteCpltCallback(void);
+void BSP_SD_ReadCpltCallback(void);
 /* USER CODE END BSP_H_CODE */
 
 #ifdef __cplusplus

@@ -1,20 +1,20 @@
 /**
-  ******************************************************************************
-  * @file    stm32h7xx_hal_pwr.h
-  * @author  MCD Application Team
-  * @brief   Header file of PWR HAL module.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file    stm32h7xx_hal_pwr.h
+ * @author  MCD Application Team
+ * @brief   Header file of PWR HAL module.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2017 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef STM32H7xx_HAL_PWR_H
@@ -28,47 +28,47 @@
 #include "stm32h7xx_hal_def.h"
 
 /** @addtogroup STM32H7xx_HAL_Driver
-  * @{
-  */
+ * @{
+ */
 
 /** @addtogroup PWR
-  * @{
-  */
+ * @{
+ */
 
 /* Exported types ------------------------------------------------------------*/
 
 /** @defgroup PWR_Exported_Types PWR Exported Types
-  * @{
-  */
+ * @{
+ */
 
 /**
-  * @brief  PWR PVD configuration structure definition
-  */
+ * @brief  PWR PVD configuration structure definition
+ */
 typedef struct
 {
-  uint32_t PVDLevel; /*!< PVDLevel: Specifies the PVD detection level. This
-                                    parameter can be a value of @ref
-                                    PWR_PVD_detection_level.
-                     */
+	uint32_t PVDLevel; /*!< PVDLevel: Specifies the PVD detection level. This
+	 parameter can be a value of @ref
+	 PWR_PVD_detection_level.
+	 */
 
-  uint32_t Mode;     /*!< Mode: Specifies the EXTI operating mode for the PVD
-                                event. This parameter can be a value of @ref
-                                PWR_PVD_Mode.
-                     */
-}PWR_PVDTypeDef;
+	uint32_t Mode; /*!< Mode: Specifies the EXTI operating mode for the PVD
+	 event. This parameter can be a value of @ref
+	 PWR_PVD_Mode.
+	 */
+} PWR_PVDTypeDef;
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /* Exported constants --------------------------------------------------------*/
 /** @defgroup PWR_Exported_Constants PWR Exported Constants
-  * @{
-  */
+ * @{
+ */
 
 /** @defgroup PWR_PVD_detection_level PWR PVD detection level
-  * @{
-  */
+ * @{
+ */
 #define PWR_PVDLEVEL_0  PWR_CR1_PLS_LEV0  /*!< Programmable voltage detector
                                                level 0 selection : 1V95       */
 #define PWR_PVDLEVEL_1  PWR_CR1_PLS_LEV1  /*!< Programmable voltage detector
@@ -86,12 +86,12 @@ typedef struct
 #define PWR_PVDLEVEL_7  PWR_CR1_PLS_LEV7  /*!< External input analog voltage
                                                (Compare internally to VREF)   */
 /**
-  * @}
-  */
+ * @}
+ */
 
 /** @defgroup PWR_PVD_Mode PWR PVD Mode
-  * @{
-  */
+ * @{
+ */
 #define PWR_PVD_MODE_NORMAL               (0x00000000U) /*!< Basic mode is used                                        */
 #define PWR_PVD_MODE_IT_RISING            (0x00010001U) /*!< Interrupt Mode with Rising edge trigger detection         */
 #define PWR_PVD_MODE_IT_FALLING           (0x00010002U) /*!< Interrupt Mode with Falling edge trigger detection        */
@@ -100,39 +100,39 @@ typedef struct
 #define PWR_PVD_MODE_EVENT_FALLING        (0x00020002U) /*!< Event Mode with Falling edge trigger detection            */
 #define PWR_PVD_MODE_EVENT_RISING_FALLING (0x00020003U) /*!< Event Mode with Rising/Falling edge trigger detection     */
 /**
-  * @}
-  */
+ * @}
+ */
 
 /** @defgroup PWR_Regulator_state_in_STOP_mode PWR Regulator state in SLEEP/STOP mode
-  * @{
-  */
+ * @{
+ */
 #define PWR_MAINREGULATOR_ON      (0U)
 #define PWR_LOWPOWERREGULATOR_ON  PWR_CR1_LPDS
 /**
-  * @}
-  */
+ * @}
+ */
 
 /** @defgroup PWR_SLEEP_mode_entry PWR SLEEP mode entry
-  * @{
-  */
+ * @{
+ */
 #define PWR_SLEEPENTRY_WFI  (0x01U)
 #define PWR_SLEEPENTRY_WFE  (0x02U)
 /**
-  * @}
-  */
+ * @}
+ */
 
 /** @defgroup PWR_STOP_mode_entry PWR STOP mode entry
-  * @{
-  */
+ * @{
+ */
 #define PWR_STOPENTRY_WFI  (0x01U)
 #define PWR_STOPENTRY_WFE  (0x02U)
 /**
-  * @}
-  */
+ * @}
+ */
 
 /** @defgroup PWR_Regulator_Voltage_Scale PWR Regulator Voltage Scale
-  * @{
-  */
+ * @{
+ */
 #if defined(PWR_SRDCR_VOS)
 #define PWR_REGULATOR_VOLTAGE_SCALE0  (PWR_SRDCR_VOS_1 | PWR_SRDCR_VOS_0)
 #define PWR_REGULATOR_VOLTAGE_SCALE1  (PWR_SRDCR_VOS_1)
@@ -145,12 +145,12 @@ typedef struct
 #define PWR_REGULATOR_VOLTAGE_SCALE3  (PWR_D3CR_VOS_0)
 #endif /* PWR_SRDCR_VOS */
 /**
-  * @}
-  */
+ * @}
+ */
 
 /** @defgroup PWR_Flag PWR Flag
-  * @{
-  */
+ * @{
+ */
 /* PWR CPU flag */
 #define PWR_FLAG_STOP       (0x01U)
 #if defined (PWR_CPUCR_SBF_D2)
@@ -194,56 +194,56 @@ typedef struct
 #define PWR_FLAG_WKUP5 PWR_WKUPCR_WKUPC5
 #define PWR_FLAG_WKUP6 PWR_WKUPCR_WKUPC6
 /**
-  * @}
-  */
+ * @}
+ */
 
 /** @defgroup PWR_ENABLE_WUP_Mask PWR Enable WUP Mask
-  * @{
-  */
+ * @{
+ */
 #define  PWR_EWUP_MASK  (0x0FFF3F3FU)
 /**
-  * @}
-  */
+ * @}
+ */
 
 /**
-  * @}
-  */
+ * @}
+ */
 /* Exported macro ------------------------------------------------------------*/
 /** @defgroup PWR_Exported_Macro PWR Exported Macro
-  * @{
-  */
+ * @{
+ */
 
 /** @brief  Configure the main internal regulator output voltage.
-  * @param  __REGULATOR__ : Specifies the regulator output voltage to achieve a
-  *                         trade-off between performance and power consumption
-  *                         when the device does not operate at the maximum
-  *                         frequency (refer to the datasheet for more details).
-  *          This parameter can be one of the following values:
-  *            @arg PWR_REGULATOR_VOLTAGE_SCALE0 : Regulator voltage output
-  *                                                Scale 0 mode.
-  *            @arg PWR_REGULATOR_VOLTAGE_SCALE1 : Regulator voltage output
-  *                                                Scale 1 mode.
-  *            @arg PWR_REGULATOR_VOLTAGE_SCALE2 : Regulator voltage output
-  *                                                Scale 2 mode.
-  *            @arg PWR_REGULATOR_VOLTAGE_SCALE3 : Regulator voltage output
-  *                                                Scale 3 mode.
-  * @note   For STM32H74x and STM32H75x lines, configuring Voltage Scale 0 is
-  *         only possible when Vcore is supplied from LDO (Low DropOut). The
-  *         SYSCFG Clock must be enabled through __HAL_RCC_SYSCFG_CLK_ENABLE()
-  *         macro before configuring Voltage Scale 0 using
-  *         __HAL_PWR_VOLTAGESCALING_CONFIG().
-  *         Transition to Voltage Scale 0 is only possible when the system is
-  *         already in Voltage Scale 1.
-  *         Transition from Voltage Scale 0 is only possible to Voltage Scale 1
-  *         then once in Voltage Scale 1 it is possible to switch to another
-  *         voltage scale.
-  *         After each regulator voltage setting, wait on VOSRDY flag to be set
-  *         using macro __HAL_PWR_GET_FLAG().
-  *         To enter low power mode , and if current regulator voltage is
-  *         Voltage Scale 0 then first switch to Voltage Scale 1 before entering
-  *         low power mode.
-  * @retval None.
-  */
+ * @param  __REGULATOR__ : Specifies the regulator output voltage to achieve a
+ *                         trade-off between performance and power consumption
+ *                         when the device does not operate at the maximum
+ *                         frequency (refer to the datasheet for more details).
+ *          This parameter can be one of the following values:
+ *            @arg PWR_REGULATOR_VOLTAGE_SCALE0 : Regulator voltage output
+ *                                                Scale 0 mode.
+ *            @arg PWR_REGULATOR_VOLTAGE_SCALE1 : Regulator voltage output
+ *                                                Scale 1 mode.
+ *            @arg PWR_REGULATOR_VOLTAGE_SCALE2 : Regulator voltage output
+ *                                                Scale 2 mode.
+ *            @arg PWR_REGULATOR_VOLTAGE_SCALE3 : Regulator voltage output
+ *                                                Scale 3 mode.
+ * @note   For STM32H74x and STM32H75x lines, configuring Voltage Scale 0 is
+ *         only possible when Vcore is supplied from LDO (Low DropOut). The
+ *         SYSCFG Clock must be enabled through __HAL_RCC_SYSCFG_CLK_ENABLE()
+ *         macro before configuring Voltage Scale 0 using
+ *         __HAL_PWR_VOLTAGESCALING_CONFIG().
+ *         Transition to Voltage Scale 0 is only possible when the system is
+ *         already in Voltage Scale 1.
+ *         Transition from Voltage Scale 0 is only possible to Voltage Scale 1
+ *         then once in Voltage Scale 1 it is possible to switch to another
+ *         voltage scale.
+ *         After each regulator voltage setting, wait on VOSRDY flag to be set
+ *         using macro __HAL_PWR_GET_FLAG().
+ *         To enter low power mode , and if current regulator voltage is
+ *         Voltage Scale 0 then first switch to Voltage Scale 1 before entering
+ *         low power mode.
+ * @retval None.
+ */
 #if defined (PWR_SRDCR_VOS) /* STM32H7Axxx and STM32H7Bxxx lines */
 #define __HAL_PWR_VOLTAGESCALING_CONFIG(__REGULATOR__)                         \
 do {                                                                           \
@@ -298,82 +298,82 @@ do {                                                                           \
 #endif /* defined (PWR_SRDCR_VOS) */
 
 /** @brief  Check PWR flags are set or not.
-  * @param  __FLAG__ : Specifies the flag to check.
-  *           This parameter can be one of the following values:
-  *            @arg PWR_FLAG_PVDO : PVD Output. This flag is valid only if PVD
-  *                                 is enabled by the HAL_PWR_EnablePVD()
-  *                                 function.
-  *                                 The PVD is stopped by STANDBY mode. For this
-  *                                 reason, this bit is equal to 0 after STANDBY
-  *                                 or reset until the PVDE bit is set.
-  *            @arg PWR_FLAG_AVDO : AVD Output. This flag is valid only if AVD
-  *                                 is enabled by the HAL_PWREx_EnableAVD()
-  *                                 function. The AVD is stopped by STANDBY mode.
-  *                                 For this reason, this bit is equal to 0
-  *                                 after STANDBY or reset until the AVDE bit
-  *                                 is set.
-  *            @arg PWR_FLAG_ACTVOSRDY : This flag indicates that the Regulator
-  *                                      voltage scaling output selection is
-  *                                      ready.
-  *            @arg PWR_FLAG_BRR : Backup regulator ready flag. This bit is not
-  *                                reset when the device wakes up from STANDBY
-  *                                mode or by a system reset or power-on reset.
-  *            @arg PWR_FLAG_VOSRDY : This flag indicates that the Regulator
-  *                                   voltage scaling output selection is ready.
-  *                                mode or by a system reset or power-on reset.
-  *            @arg PWR_FLAG_USB33RDY : This flag indicates that the USB supply
-  *                                     from regulator is ready.
-  *            @arg PWR_FLAG_TEMPH : This flag indicates that the temperature
-  *                                  equal or above high threshold level.
-  *            @arg PWR_FLAG_TEMPL : This flag indicates that the temperature
-  *                                  equal or below low threshold level.
-  *            @arg PWR_FLAG_VBATH : This flag indicates that VBAT level equal
-  *                                  or above high threshold level.
-  *            @arg PWR_FLAG_VBATL : This flag indicates that VBAT level equal
-  *                                  or below low threshold level.
-  *            @arg PWR_FLAG_STOP : This flag indicates that the system entered
-  *                                 in STOP mode.
-  *            @arg PWR_FLAG_SB : This flag indicates that the system entered in
-  *                               STANDBY mode.
-  *            @arg PWR_FLAG_SB_D1 : This flag indicates that the D1 domain
-  *                                  entered in STANDBY mode.
-  *            @arg PWR_FLAG_SB_D2 : This flag indicates that the D2 domain
-  *                                  entered in STANDBY mode.
-  *            @arg PWR_FLAG2_STOP : This flag indicates that the system entered
-  *                                 in STOP mode.
-  *            @arg PWR_FLAG2_SB : This flag indicates that the system entered
-  *                                in STANDBY mode.
-  *            @arg PWR_FLAG2_SB_D1 : This flag indicates that the D1 domain
-  *                                   entered in STANDBY mode.
-  *            @arg PWR_FLAG2_SB_D2 : This flag indicates that the D2 domain
-  *                                   entered in STANDBY mode.
-  *            @arg PWR_FLAG_CPU_HOLD : This flag indicates that the CPU1 wakes
-  *                                     up with hold.
-  *            @arg PWR_FLAG_CPU2_HOLD : This flag indicates that the CPU2 wakes
-  *                                      up with hold.
-  *            @arg PWR_FLAG_SMPSEXTRDY : This flag indicates that the SMPS
-  *                                       External supply is sready.
-  *            @arg PWR_FLAG_SCUEN : This flag indicates that the supply
-  *                                  configuration update is enabled.
-  *            @arg PWR_FLAG_MMCVDO : This flag indicates that the VDDMMC is
-  *                                   above or equal to 1.2 V.
-  * @note   The PWR_FLAG_PVDO, PWR_FLAG_AVDO, PWR_FLAG_ACTVOSRDY, PWR_FLAG_BRR,
-  *         PWR_FLAG_VOSRDY, PWR_FLAG_USB33RDY, PWR_FLAG_TEMPH, PWR_FLAG_TEMPL,
-  *         PWR_FLAG_VBATH, PWR_FLAG_VBATL, PWR_FLAG_STOP and PWR_FLAG_SB flags
-  *         are used for all H7 family lines.
-  *         The PWR_FLAG2_STOP, PWR_FLAG2_SB, PWR_FLAG2_SB_D1, PWR_FLAG2_SB_D2,
-  *         PWR_FLAG_CPU_HOLD and PWR_FLAG_CPU2_HOLD flags are used only for H7
-  *         dual core lines.
-  *         The PWR_FLAG_SB_D1 and PWR_FLAG_SB_D2 flags are used for all H7
-  *         family except STM32H7Axxx and STM32H7Bxxx lines.
-  *         The PWR_FLAG_MMCVDO flag is used only for STM32H7Axxx and
-  *         STM32H7Bxxx lines.
-  *         The PWR_FLAG_SCUEN flag is used for devices that support only LDO
-  *         regulator.
-  *         The PWR_FLAG_SMPSEXTRDY flag is used for devices that support LDO
-  *         and SMPS regulators.
-  * @retval The (__FLAG__) state (TRUE or FALSE).
-  */
+ * @param  __FLAG__ : Specifies the flag to check.
+ *           This parameter can be one of the following values:
+ *            @arg PWR_FLAG_PVDO : PVD Output. This flag is valid only if PVD
+ *                                 is enabled by the HAL_PWR_EnablePVD()
+ *                                 function.
+ *                                 The PVD is stopped by STANDBY mode. For this
+ *                                 reason, this bit is equal to 0 after STANDBY
+ *                                 or reset until the PVDE bit is set.
+ *            @arg PWR_FLAG_AVDO : AVD Output. This flag is valid only if AVD
+ *                                 is enabled by the HAL_PWREx_EnableAVD()
+ *                                 function. The AVD is stopped by STANDBY mode.
+ *                                 For this reason, this bit is equal to 0
+ *                                 after STANDBY or reset until the AVDE bit
+ *                                 is set.
+ *            @arg PWR_FLAG_ACTVOSRDY : This flag indicates that the Regulator
+ *                                      voltage scaling output selection is
+ *                                      ready.
+ *            @arg PWR_FLAG_BRR : Backup regulator ready flag. This bit is not
+ *                                reset when the device wakes up from STANDBY
+ *                                mode or by a system reset or power-on reset.
+ *            @arg PWR_FLAG_VOSRDY : This flag indicates that the Regulator
+ *                                   voltage scaling output selection is ready.
+ *                                mode or by a system reset or power-on reset.
+ *            @arg PWR_FLAG_USB33RDY : This flag indicates that the USB supply
+ *                                     from regulator is ready.
+ *            @arg PWR_FLAG_TEMPH : This flag indicates that the temperature
+ *                                  equal or above high threshold level.
+ *            @arg PWR_FLAG_TEMPL : This flag indicates that the temperature
+ *                                  equal or below low threshold level.
+ *            @arg PWR_FLAG_VBATH : This flag indicates that VBAT level equal
+ *                                  or above high threshold level.
+ *            @arg PWR_FLAG_VBATL : This flag indicates that VBAT level equal
+ *                                  or below low threshold level.
+ *            @arg PWR_FLAG_STOP : This flag indicates that the system entered
+ *                                 in STOP mode.
+ *            @arg PWR_FLAG_SB : This flag indicates that the system entered in
+ *                               STANDBY mode.
+ *            @arg PWR_FLAG_SB_D1 : This flag indicates that the D1 domain
+ *                                  entered in STANDBY mode.
+ *            @arg PWR_FLAG_SB_D2 : This flag indicates that the D2 domain
+ *                                  entered in STANDBY mode.
+ *            @arg PWR_FLAG2_STOP : This flag indicates that the system entered
+ *                                 in STOP mode.
+ *            @arg PWR_FLAG2_SB : This flag indicates that the system entered
+ *                                in STANDBY mode.
+ *            @arg PWR_FLAG2_SB_D1 : This flag indicates that the D1 domain
+ *                                   entered in STANDBY mode.
+ *            @arg PWR_FLAG2_SB_D2 : This flag indicates that the D2 domain
+ *                                   entered in STANDBY mode.
+ *            @arg PWR_FLAG_CPU_HOLD : This flag indicates that the CPU1 wakes
+ *                                     up with hold.
+ *            @arg PWR_FLAG_CPU2_HOLD : This flag indicates that the CPU2 wakes
+ *                                      up with hold.
+ *            @arg PWR_FLAG_SMPSEXTRDY : This flag indicates that the SMPS
+ *                                       External supply is sready.
+ *            @arg PWR_FLAG_SCUEN : This flag indicates that the supply
+ *                                  configuration update is enabled.
+ *            @arg PWR_FLAG_MMCVDO : This flag indicates that the VDDMMC is
+ *                                   above or equal to 1.2 V.
+ * @note   The PWR_FLAG_PVDO, PWR_FLAG_AVDO, PWR_FLAG_ACTVOSRDY, PWR_FLAG_BRR,
+ *         PWR_FLAG_VOSRDY, PWR_FLAG_USB33RDY, PWR_FLAG_TEMPH, PWR_FLAG_TEMPL,
+ *         PWR_FLAG_VBATH, PWR_FLAG_VBATL, PWR_FLAG_STOP and PWR_FLAG_SB flags
+ *         are used for all H7 family lines.
+ *         The PWR_FLAG2_STOP, PWR_FLAG2_SB, PWR_FLAG2_SB_D1, PWR_FLAG2_SB_D2,
+ *         PWR_FLAG_CPU_HOLD and PWR_FLAG_CPU2_HOLD flags are used only for H7
+ *         dual core lines.
+ *         The PWR_FLAG_SB_D1 and PWR_FLAG_SB_D2 flags are used for all H7
+ *         family except STM32H7Axxx and STM32H7Bxxx lines.
+ *         The PWR_FLAG_MMCVDO flag is used only for STM32H7Axxx and
+ *         STM32H7Bxxx lines.
+ *         The PWR_FLAG_SCUEN flag is used for devices that support only LDO
+ *         regulator.
+ *         The PWR_FLAG_SMPSEXTRDY flag is used for devices that support LDO
+ *         and SMPS regulators.
+ * @retval The (__FLAG__) state (TRUE or FALSE).
+ */
 #if defined (DUAL_CORE) /* Dual core lines */
 #define __HAL_PWR_GET_FLAG(__FLAG__)                                                              \
 (((__FLAG__) == PWR_FLAG_PVDO)       ? ((PWR->CSR1 & PWR_CSR1_PVDO)       == PWR_CSR1_PVDO)      :\
@@ -472,18 +472,18 @@ do {                                                                           \
 #endif /* DUAL_CORE */
 
 /** @brief  Check PWR wake up flags are set or not.
-  * @param  __FLAG__: specifies the wake up flag to check.
-  *           This parameter can be one of the following values:
-  *            @arg PWR_FLAG_WKUP1 : This parameter clear Wake up line 1 flag.
-  *            @arg PWR_FLAG_WKUP2 : This parameter clear Wake up line 2 flag.
-  *            @arg PWR_FLAG_WKUP3 : This parameter clear Wake up line 3 flag.
-  *            @arg PWR_FLAG_WKUP4 : This parameter clear Wake up line 4 flag.
-  *            @arg PWR_FLAG_WKUP5 : This parameter clear Wake up line 5 flag.
-  *            @arg PWR_FLAG_WKUP6 : This parameter clear Wake up line 6 flag.
-  * @note   The PWR_FLAG_WKUP3 and PWR_FLAG_WKUP5 are available only for devices
-  *         that support GPIOI port.
-  * @retval The (__FLAG__) state (TRUE or FALSE).
-  */
+ * @param  __FLAG__: specifies the wake up flag to check.
+ *           This parameter can be one of the following values:
+ *            @arg PWR_FLAG_WKUP1 : This parameter clear Wake up line 1 flag.
+ *            @arg PWR_FLAG_WKUP2 : This parameter clear Wake up line 2 flag.
+ *            @arg PWR_FLAG_WKUP3 : This parameter clear Wake up line 3 flag.
+ *            @arg PWR_FLAG_WKUP4 : This parameter clear Wake up line 4 flag.
+ *            @arg PWR_FLAG_WKUP5 : This parameter clear Wake up line 5 flag.
+ *            @arg PWR_FLAG_WKUP6 : This parameter clear Wake up line 6 flag.
+ * @note   The PWR_FLAG_WKUP3 and PWR_FLAG_WKUP5 are available only for devices
+ *         that support GPIOI port.
+ * @retval The (__FLAG__) state (TRUE or FALSE).
+ */
 #define __HAL_PWR_GET_WAKEUPFLAG(__FLAG__) ((PWR->WKUPFR & (__FLAG__)) ? 0 : 1)
 
 #if defined (DUAL_CORE)
@@ -504,37 +504,37 @@ do {                                        \
 } while(0)
 #else
 /** @brief  Clear CPU PWR flags.
-  * @param  __FLAG__ : Specifies the flag to clear.
-  * @note   This parameter is not used for the STM32H7 family and is kept as
-  *         parameter just to maintain compatibility with other families.
-  * @note   This macro clear all CPU flags.
-  *         For single core devices except STM32H7Axxx and STM32H7Bxxx, CPU
-  *         flags are STOPF, SBF, SBF_D1 and SBF_D2.
-  *         For STM32H7Axxx and STM32H7Bxxx lines, CPU flags are STOPF and SBF.
-  * @retval None.
-  */
+ * @param  __FLAG__ : Specifies the flag to clear.
+ * @note   This parameter is not used for the STM32H7 family and is kept as
+ *         parameter just to maintain compatibility with other families.
+ * @note   This macro clear all CPU flags.
+ *         For single core devices except STM32H7Axxx and STM32H7Bxxx, CPU
+ *         flags are STOPF, SBF, SBF_D1 and SBF_D2.
+ *         For STM32H7Axxx and STM32H7Bxxx lines, CPU flags are STOPF and SBF.
+ * @retval None.
+ */
 #define __HAL_PWR_CLEAR_FLAG(__FLAG__) SET_BIT(PWR->CPUCR, PWR_CPUCR_CSSF)
 #endif /* defined (DUAL_CORE) */
 
 /** @brief  Clear PWR wake up flags.
-  * @param  __FLAG__ : Specifies the wake up flag to be cleared.
-  *           This parameter can be one of the following values :
-  *            @arg PWR_FLAG_WKUP1 : This parameter clear Wake up line 1 flag.
-  *            @arg PWR_FLAG_WKUP2 : This parameter clear Wake up line 2 flag.
-  *            @arg PWR_FLAG_WKUP3 : This parameter clear Wake up line 3 flag.
-  *            @arg PWR_FLAG_WKUP4 : This parameter clear Wake up line 4 flag.
-  *            @arg PWR_FLAG_WKUP5 : This parameter clear Wake up line 5 flag.
-  *            @arg PWR_FLAG_WKUP6 : This parameter clear Wake up line 6 flag.
-  * @note   The PWR_FLAG_WKUP3 and PWR_FLAG_WKUP5 are available only for devices
-  *         that support GPIOI port.
-  * @retval None.
-  */
+ * @param  __FLAG__ : Specifies the wake up flag to be cleared.
+ *           This parameter can be one of the following values :
+ *            @arg PWR_FLAG_WKUP1 : This parameter clear Wake up line 1 flag.
+ *            @arg PWR_FLAG_WKUP2 : This parameter clear Wake up line 2 flag.
+ *            @arg PWR_FLAG_WKUP3 : This parameter clear Wake up line 3 flag.
+ *            @arg PWR_FLAG_WKUP4 : This parameter clear Wake up line 4 flag.
+ *            @arg PWR_FLAG_WKUP5 : This parameter clear Wake up line 5 flag.
+ *            @arg PWR_FLAG_WKUP6 : This parameter clear Wake up line 6 flag.
+ * @note   The PWR_FLAG_WKUP3 and PWR_FLAG_WKUP5 are available only for devices
+ *         that support GPIOI port.
+ * @retval None.
+ */
 #define __HAL_PWR_CLEAR_WAKEUPFLAG(__FLAG__) SET_BIT(PWR->WKUPCR, (__FLAG__))
 
 /**
-  * @brief Enable the PVD EXTI Line 16.
-  * @retval None.
-  */
+ * @brief Enable the PVD EXTI Line 16.
+ * @retval None.
+ */
 #define __HAL_PWR_PVD_EXTI_ENABLE_IT() SET_BIT(EXTI->IMR1, PWR_EXTI_LINE_PVD)
 
 #if defined (DUAL_CORE)
@@ -546,9 +546,9 @@ do {                                        \
 #endif /* defined (DUAL_CORE) */
 
 /**
-  * @brief Disable the PVD EXTI Line 16.
-  * @retval None.
-  */
+ * @brief Disable the PVD EXTI Line 16.
+ * @retval None.
+ */
 #define __HAL_PWR_PVD_EXTI_DISABLE_IT() CLEAR_BIT(EXTI->IMR1, PWR_EXTI_LINE_PVD)
 
 #if defined (DUAL_CORE)
@@ -560,9 +560,9 @@ do {                                        \
 #endif /* defined (DUAL_CORE) */
 
 /**
-  * @brief   Enable event on PVD EXTI Line 16.
-  * @retval None.
-  */
+ * @brief   Enable event on PVD EXTI Line 16.
+ * @retval None.
+ */
 #define __HAL_PWR_PVD_EXTI_ENABLE_EVENT() SET_BIT(EXTI->EMR1, PWR_EXTI_LINE_PVD)
 
 #if defined (DUAL_CORE)
@@ -574,9 +574,9 @@ do {                                        \
 #endif /* defined (DUAL_CORE) */
 
 /**
-  * @brief   Disable event on PVD EXTI Line 16.
-  * @retval None.
-  */
+ * @brief   Disable event on PVD EXTI Line 16.
+ * @retval None.
+ */
 #define __HAL_PWR_PVD_EXTI_DISABLE_EVENT() CLEAR_BIT(EXTI->EMR1, PWR_EXTI_LINE_PVD)
 
 #if defined (DUAL_CORE)
@@ -588,33 +588,33 @@ do {                                        \
 #endif /* defined (DUAL_CORE) */
 
 /**
-  * @brief Enable the PVD Rising Interrupt Trigger.
-  * @retval None.
-  */
+ * @brief Enable the PVD Rising Interrupt Trigger.
+ * @retval None.
+ */
 #define __HAL_PWR_PVD_EXTI_ENABLE_RISING_EDGE() SET_BIT(EXTI->RTSR1, PWR_EXTI_LINE_PVD)
 
 /**
-  * @brief Disable the PVD Rising Interrupt Trigger.
-  * @retval None.
-  */
+ * @brief Disable the PVD Rising Interrupt Trigger.
+ * @retval None.
+ */
 #define __HAL_PWR_PVD_EXTI_DISABLE_RISING_EDGE() CLEAR_BIT(EXTI->RTSR1, PWR_EXTI_LINE_PVD)
 
 /**
-  * @brief Enable the PVD Falling Interrupt Trigger.
-  * @retval None.
-  */
+ * @brief Enable the PVD Falling Interrupt Trigger.
+ * @retval None.
+ */
 #define __HAL_PWR_PVD_EXTI_ENABLE_FALLING_EDGE() SET_BIT(EXTI->FTSR1, PWR_EXTI_LINE_PVD)
 
 /**
-  * @brief Disable the PVD Falling Interrupt Trigger.
-  * @retval None.
-  */
+ * @brief Disable the PVD Falling Interrupt Trigger.
+ * @retval None.
+ */
 #define __HAL_PWR_PVD_EXTI_DISABLE_FALLING_EDGE() CLEAR_BIT(EXTI->FTSR1, PWR_EXTI_LINE_PVD)
 
 /**
-  * @brief Enable the PVD Rising & Falling Interrupt Trigger.
-  * @retval None.
-  */
+ * @brief Enable the PVD Rising & Falling Interrupt Trigger.
+ * @retval None.
+ */
 #define __HAL_PWR_PVD_EXTI_ENABLE_RISING_FALLING_EDGE() \
 do {                                                    \
       __HAL_PWR_PVD_EXTI_ENABLE_RISING_EDGE();          \
@@ -622,9 +622,9 @@ do {                                                    \
 } while(0);
 
 /**
-  * @brief Disable the PVD Rising & Falling Interrupt Trigger.
-  * @retval None.
-  */
+ * @brief Disable the PVD Rising & Falling Interrupt Trigger.
+ * @retval None.
+ */
 #define __HAL_PWR_PVD_EXTI_DISABLE_RISING_FALLING_EDGE() \
 do {                                                     \
       __HAL_PWR_PVD_EXTI_DISABLE_RISING_EDGE();          \
@@ -632,9 +632,9 @@ do {                                                     \
 } while(0);
 
 /**
-  * @brief Check whether the specified PVD EXTI interrupt flag is set or not.
-  * @retval EXTI PVD Line Status.
-  */
+ * @brief Check whether the specified PVD EXTI interrupt flag is set or not.
+ * @retval EXTI PVD Line Status.
+ */
 #define __HAL_PWR_PVD_EXTI_GET_FLAG() ((READ_BIT(EXTI->PR1, PWR_EXTI_LINE_PVD) == PWR_EXTI_LINE_PVD) ? 1UL : 0UL)
 
 #if defined (DUAL_CORE)
@@ -646,9 +646,9 @@ do {                                                     \
 #endif /* defined (DUAL_CORE) */
 
 /**
-  * @brief Clear the PVD EXTI flag.
-  * @retval None.
-  */
+ * @brief Clear the PVD EXTI flag.
+ * @retval None.
+ */
 #define __HAL_PWR_PVD_EXTI_CLEAR_FLAG() SET_BIT(EXTI->PR1, PWR_EXTI_LINE_PVD)
 
 #if defined (DUAL_CORE)
@@ -660,95 +660,95 @@ do {                                                     \
 #endif /* defined (DUAL_CORE) */
 
 /**
-  * @brief  Generates a Software interrupt on PVD EXTI line.
-  * @retval None.
-  */
+ * @brief  Generates a Software interrupt on PVD EXTI line.
+ * @retval None.
+ */
 #define __HAL_PWR_PVD_EXTI_GENERATE_SWIT() SET_BIT(EXTI->SWIER1, PWR_EXTI_LINE_PVD)
 /**
-  * @}
-  */
+ * @}
+ */
 
 /* Include PWR HAL Extension module */
 #include "stm32h7xx_hal_pwr_ex.h"
 
 /* Exported functions --------------------------------------------------------*/
 /** @addtogroup PWR_Exported_Functions PWR Exported Functions
-  * @{
-  */
+ * @{
+ */
 
 /** @addtogroup PWR_Exported_Functions_Group1 Initialization and De-Initialization Functions
-  * @{
-  */
+ * @{
+ */
 /* Initialization and de-initialization functions *****************************/
-void HAL_PWR_DeInit            (void);
-void HAL_PWR_EnableBkUpAccess  (void);
-void HAL_PWR_DisableBkUpAccess (void);
+void HAL_PWR_DeInit(void);
+void HAL_PWR_EnableBkUpAccess(void);
+void HAL_PWR_DisableBkUpAccess(void);
 /**
-  * @}
-  */
+ * @}
+ */
 
 /** @addtogroup PWR_Exported_Functions_Group2 Peripheral Control Functions
-  * @{
-  */
+ * @{
+ */
 /* Peripheral Control functions  **********************************************/
 /* PVD configuration */
-void HAL_PWR_ConfigPVD  (const PWR_PVDTypeDef *sConfigPVD);
-void HAL_PWR_EnablePVD  (void);
-void HAL_PWR_DisablePVD (void);
+void HAL_PWR_ConfigPVD(const PWR_PVDTypeDef *sConfigPVD);
+void HAL_PWR_EnablePVD(void);
+void HAL_PWR_DisablePVD(void);
 
 /* WakeUp pins configuration */
-void HAL_PWR_EnableWakeUpPin  (uint32_t WakeUpPinPolarity);
-void HAL_PWR_DisableWakeUpPin (uint32_t WakeUpPinx);
+void HAL_PWR_EnableWakeUpPin(uint32_t WakeUpPinPolarity);
+void HAL_PWR_DisableWakeUpPin(uint32_t WakeUpPinx);
 
 /* Low Power modes entry */
-void HAL_PWR_EnterSTOPMode    (uint32_t Regulator, uint8_t STOPEntry);
-void HAL_PWR_EnterSLEEPMode   (uint32_t Regulator, uint8_t SLEEPEntry);
-void HAL_PWR_EnterSTANDBYMode (void);
+void HAL_PWR_EnterSTOPMode(uint32_t Regulator, uint8_t STOPEntry);
+void HAL_PWR_EnterSLEEPMode(uint32_t Regulator, uint8_t SLEEPEntry);
+void HAL_PWR_EnterSTANDBYMode(void);
 
 /* Power PVD IRQ Handler */
-void HAL_PWR_PVD_IRQHandler (void);
-void HAL_PWR_PVDCallback    (void);
+void HAL_PWR_PVD_IRQHandler(void);
+void HAL_PWR_PVDCallback(void);
 
 /* Cortex System Control functions  *******************************************/
-void HAL_PWR_EnableSleepOnExit  (void);
-void HAL_PWR_DisableSleepOnExit (void);
-void HAL_PWR_EnableSEVOnPend    (void);
-void HAL_PWR_DisableSEVOnPend   (void);
+void HAL_PWR_EnableSleepOnExit(void);
+void HAL_PWR_DisableSleepOnExit(void);
+void HAL_PWR_EnableSEVOnPend(void);
+void HAL_PWR_DisableSEVOnPend(void);
 /**
-  * @}
-  */
+ * @}
+ */
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /* Private types -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* Private constants ---------------------------------------------------------*/
 /** @defgroup PWR_Private_Constants PWR Private Constants
-  * @{
-  */
+ * @{
+ */
 
 /** @defgroup PWR_PVD_EXTI_Line PWR PVD EXTI Line
-  * @{
-  */
+ * @{
+ */
 #define PWR_EXTI_LINE_PVD  EXTI_IMR1_IM16 /*!< External interrupt line 16
                                                Connected to the PVD EXTI Line */
 /**
-  * @}
-  */
+ * @}
+ */
 
 /**
-  * @}
-  */
+ * @}
+ */
 /* Private macros ------------------------------------------------------------*/
 /** @defgroup PWR_Private_Macros PWR Private Macros
-  * @{
-  */
+ * @{
+ */
 
 /** @defgroup PWR_IS_PWR_Definitions PWR Private macros to check input parameters
-  * @{
-  */
+ * @{
+ */
 /* Check PVD level parameter */
 #define IS_PWR_PVD_LEVEL(LEVEL) (((LEVEL) == PWR_PVDLEVEL_0) ||\
                                  ((LEVEL) == PWR_PVDLEVEL_1) ||\
@@ -786,20 +786,20 @@ void HAL_PWR_DisableSEVOnPend   (void);
                                            ((VOLTAGE) == PWR_REGULATOR_VOLTAGE_SCALE2) || \
                                            ((VOLTAGE) == PWR_REGULATOR_VOLTAGE_SCALE3))
 /**
-  * @}
-  */
+ * @}
+ */
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 #ifdef __cplusplus
 }

@@ -329,19 +329,19 @@ int mbedtls_platform_set_nv_seed(
 /*
  * Placeholder platform setup that does nothing by default
  */
-int mbedtls_platform_setup( mbedtls_platform_context *ctx )
+int mbedtls_platform_setup(mbedtls_platform_context *ctx)
 {
-    (void)ctx;
+	(void) ctx;
 
-    return( 0 );
+	return (0);
 }
 
 /*
  * Placeholder platform teardown that does nothing by default
  */
-void mbedtls_platform_teardown( mbedtls_platform_context *ctx )
+void mbedtls_platform_teardown(mbedtls_platform_context *ctx)
 {
-    (void)ctx;
+	(void) ctx;
 }
 #endif /* MBEDTLS_PLATFORM_SETUP_TEARDOWN_ALT */
 

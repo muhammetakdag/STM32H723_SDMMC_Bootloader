@@ -1,21 +1,21 @@
 /**
-  ******************************************************************************
-  * @file    stm32h7xx_hal.h
-  * @author  MCD Application Team
-  * @brief   This file contains all the functions prototypes for the HAL
-  *          module driver.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file    stm32h7xx_hal.h
+ * @author  MCD Application Team
+ * @brief   This file contains all the functions prototypes for the HAL
+ *          module driver.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2017 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef STM32H7xx_HAL_H
@@ -29,35 +29,35 @@
 #include "stm32h7xx_hal_conf.h"
 
 /** @addtogroup STM32H7xx_HAL_Driver
-  * @{
-  */
+ * @{
+ */
 
 /** @addtogroup HAL
-  * @{
-  */
+ * @{
+ */
 
 /* Exported types ------------------------------------------------------------*/
 /** @defgroup HAL_TICK_FREQ Tick Frequency
-  * @{
-  */
+ * @{
+ */
 typedef enum
 {
-  HAL_TICK_FREQ_10HZ         = 100U,
-  HAL_TICK_FREQ_100HZ        = 10U,
-  HAL_TICK_FREQ_1KHZ         = 1U,
-  HAL_TICK_FREQ_DEFAULT      = HAL_TICK_FREQ_1KHZ
+	HAL_TICK_FREQ_10HZ = 100U,
+	HAL_TICK_FREQ_100HZ = 10U,
+	HAL_TICK_FREQ_1KHZ = 1U,
+	HAL_TICK_FREQ_DEFAULT = HAL_TICK_FREQ_1KHZ
 } HAL_TickFreqTypeDef;
 /**
-  * @}
-  */
+ * @}
+ */
 
 /* Exported constants --------------------------------------------------------*/
 /** @defgroup HAL_Exported_Constants HAL Exported Constants
-  * @{
-  */
+ * @{
+ */
 /** @defgroup REV_ID device revision ID
-  * @{
-  */
+ * @{
+ */
 #define REV_ID_Y ((uint32_t)0x1003)  /*!< STM32H7 rev.Y */
 #define REV_ID_Z ((uint32_t)0x1001)  /*!< STM32H7 rev.Z */
 #define REV_ID_A ((uint32_t)0x1000)  /*!< STM32H7 rev.A */
@@ -70,35 +70,33 @@ typedef enum
 #define REV_ID_V ((uint32_t)0x2003)  /*!< STM32H7 rev.V */
 
 /**
-  * @}
-  */
-  
+ * @}
+ */
+
 /** @defgroup SYSCFG_Exported_Constants SYSCFG Exported Constants
-  * @{
-  */
+ * @{
+ */
 
 /** @defgroup SYSCFG_VREFBUF_VoltageScale VREFBUF Voltage Scale
-  * @{
-  */
+ * @{
+ */
 #define SYSCFG_VREFBUF_VOLTAGE_SCALE0   VREFBUF_CSR_VRS_OUT1   /*!< Voltage reference scale 0 (VREF_OUT1) */
 #define SYSCFG_VREFBUF_VOLTAGE_SCALE1   VREFBUF_CSR_VRS_OUT2   /*!< Voltage reference scale 1 (VREF_OUT2) */
 #define SYSCFG_VREFBUF_VOLTAGE_SCALE2   VREFBUF_CSR_VRS_OUT3   /*!< Voltage reference scale 2 (VREF_OUT3) */
 #define SYSCFG_VREFBUF_VOLTAGE_SCALE3   VREFBUF_CSR_VRS_OUT4   /*!< Voltage reference scale 3 (VREF_OUT4) */
-
 
 #define IS_SYSCFG_VREFBUF_VOLTAGE_SCALE(__SCALE__)  (((__SCALE__) == SYSCFG_VREFBUF_VOLTAGE_SCALE0) || \
                                                      ((__SCALE__) == SYSCFG_VREFBUF_VOLTAGE_SCALE1) || \
                                                      ((__SCALE__) == SYSCFG_VREFBUF_VOLTAGE_SCALE2) || \
                                                      ((__SCALE__) == SYSCFG_VREFBUF_VOLTAGE_SCALE3))
 
-
 /**
-  * @}
-  */
+ * @}
+ */
 
 /** @defgroup SYSCFG_VREFBUF_HighImpedance VREFBUF High Impedance
-  * @{
-  */
+ * @{
+ */
 #define SYSCFG_VREFBUF_HIGH_IMPEDANCE_DISABLE  ((uint32_t)0x00000000) /*!< VREF_plus pin is internally connected to Voltage reference buffer output */
 #define SYSCFG_VREFBUF_HIGH_IMPEDANCE_ENABLE   VREFBUF_CSR_HIZ        /*!< VREF_plus pin is high impedance */
 
@@ -108,8 +106,8 @@ typedef enum
 #define IS_SYSCFG_VREFBUF_TRIMMING(__VALUE__)  (((__VALUE__) > 0UL) && ((__VALUE__) <= VREFBUF_CCR_TRIM))
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 #if !defined(SYSCFG_PMCR_BOOSTEN)
 /** @defgroup SYSCFG_FastModePlus_GPIO Fast-mode Plus on GPIO
@@ -133,14 +131,13 @@ typedef enum
   */
 #endif /* ! SYSCFG_PMCR_BOOSTEN */
 
-
 #if defined(SYSCFG_ADC2ALT_ADC2_ROUT0) || defined(SYSCFG_ADC2ALT_ADC2_ROUT1)
 /** @defgroup SYSCFG_Adc2_Alternate_Connection SYSCFG ADC2 Alternate Connection
-  * @{
-  */
+ * @{
+ */
 
 /** @brief  Adc2 Alternate Connection on Vinp[16] and Vinp[17]
-  */
+ */
 #define SYSCFG_ADC2_ROUT0_DAC1_1       ((uint32_t)0x00000000)      /*!< DAC1_out1 connected to ADC2 VINP[16] */
 #define SYSCFG_ADC2_ROUT0_VBAT4         SYSCFG_ADC2ALT_ADC2_ROUT0  /*!< VBAT/4 connected to ADC2 VINP[16] */
 #define SYSCFG_ADC2_ROUT1_DAC1_2        ((uint32_t)0x00000000)     /*!< DAC1_out2 connected to ADC2 VINP[17] */
@@ -152,14 +149,13 @@ typedef enum
                                              ((__VALUE__) == SYSCFG_ADC2_ROUT1_VREFINT))
 
 /**
-  * @}
-  */
+ * @}
+ */
 #endif /*SYSCFG_ADC2ALT_ADC2_ROUT0 || SYSCFG_ADC2ALT_ADC2_ROUT1*/
 
-
 /** @defgroup SYSCFG_Ethernet_Config  Ethernet Config
-  * @{
-  */
+ * @{
+ */
 #define SYSCFG_ETH_MII                      ((uint32_t)0x00000000)  /*!< Select the Media Independent Interface */
 #define SYSCFG_ETH_RMII                     SYSCFG_PMCR_EPIS_SEL_2  /*!< Select the Reduced Media Independent Interface */
 
@@ -167,20 +163,16 @@ typedef enum
                                           ((CONFIG) == SYSCFG_ETH_RMII))
 
 /**
-  * @}
-  */
-
+ * @}
+ */
 
 /** @defgroup SYSCFG_Analog_Switch_Config  Analog Switch Config
-  * @{
-  */
+ * @{
+ */
 #define SYSCFG_SWITCH_PA0                       SYSCFG_PMCR_PA0SO  /*!< Select PA0 analog switch */
 #define SYSCFG_SWITCH_PA1                       SYSCFG_PMCR_PA1SO  /*!< Select PA1 analog switch */
 #define SYSCFG_SWITCH_PC2                       SYSCFG_PMCR_PC2SO  /*!< Select PC2 analog switch */
 #define SYSCFG_SWITCH_PC3                       SYSCFG_PMCR_PC3SO  /*!< Select PC3 analog switch */
-
-
-
 
 #define SYSCFG_SWITCH_PA0_OPEN                       SYSCFG_PMCR_PA0SO       /*!< PA0 analog switch opened */
 #define SYSCFG_SWITCH_PA0_CLOSE                      ((uint32_t)0x00000000)  /*!< PA0 analog switch closed */
@@ -192,14 +184,13 @@ typedef enum
 #define SYSCFG_SWITCH_PC3_CLOSE                      ((uint32_t)0x00000000)  /*!< PC3 analog switch closed */
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 #define IS_SYSCFG_ANALOG_SWITCH(SWITCH)    ((((SWITCH) & SYSCFG_SWITCH_PA0) == SYSCFG_SWITCH_PA0)|| \
                                            (((SWITCH) & SYSCFG_SWITCH_PA1) == SYSCFG_SWITCH_PA1) || \
                                            (((SWITCH) & SYSCFG_SWITCH_PC2) == SYSCFG_SWITCH_PC2) || \
                                            (((SWITCH) & SYSCFG_SWITCH_PC3) == SYSCFG_SWITCH_PC3))
-
 
 #define IS_SYSCFG_SWITCH_STATE(STATE)      ((((STATE) & SYSCFG_SWITCH_PA0_OPEN) == SYSCFG_SWITCH_PA0_OPEN)    || \
                                            (((STATE) & SYSCFG_SWITCH_PA0_CLOSE) == SYSCFG_SWITCH_PA0_CLOSE)   || \
@@ -210,10 +201,9 @@ typedef enum
                                            (((STATE) & SYSCFG_SWITCH_PC3_OPEN) == SYSCFG_SWITCH_PC3_OPEN)     || \
                                            (((STATE) & SYSCFG_SWITCH_PC3_CLOSE) == SYSCFG_SWITCH_PC3_CLOSE))
 
-
 /** @defgroup SYSCFG_Boot_Config  Boot Config
-  * @{
-  */
+ * @{
+ */
 #define SYSCFG_BOOT_ADDR0                    ((uint32_t)0x00000000)  /*!< Select Boot address0 */
 #define SYSCFG_BOOT_ADDR1                    ((uint32_t)0x00000001)  /*!< Select Boot address1 */
 
@@ -223,13 +213,12 @@ typedef enum
 #define IS_SYSCFG_BOOT_ADDRESS(ADDRESS) ((ADDRESS) < PERIPH_BASE)
 
 /**
-  * @}
-  */
-
+ * @}
+ */
 
 /** @defgroup SYSCFG_IOCompenstionCell_Config  IOCompenstionCell Config
-  * @{
-  */
+ * @{
+ */
 #define SYSCFG_CELL_CODE                    ((uint32_t)0x00000000)  /*!< Select Code from the cell */
 #define SYSCFG_REGISTER_CODE                 SYSCFG_CCCSR_CS        /*!< Code from the SYSCFG compensation cell code register */
 
@@ -239,17 +228,16 @@ typedef enum
 #define IS_SYSCFG_CODE_CONFIG(CONFIG) ((CONFIG) < (0x10UL))
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /**
-  * @}
-  */
-
+ * @}
+ */
 
 /** @defgroup EXTI_Event_Input_Config  Event Input Config
-  * @{
-  */
+ * @{
+ */
 
 #define EXTI_MODE_IT          ((uint32_t)0x00010000)
 #define EXTI_MODE_EVT         ((uint32_t)0x00020000)
@@ -672,7 +660,6 @@ typedef enum
                                 ((LINE) == EXTI_LINE51) || ((LINE) == EXTI_LINE88))
 #endif /*DUAL_CORE*/
 
-
 #define  BDMA_CH6_CLEAR           ((uint32_t)0x00000000)   /*!< BDMA ch6 event selected as D3 domain pendclear source*/
 #define  BDMA_CH7_CLEAR           ((uint32_t)0x00000001)   /*!< BDMA ch7 event selected as D3 domain pendclear source*/
 #if defined (LPTIM4)
@@ -693,13 +680,12 @@ typedef enum
                                  ((SOURCE) == LPTIM2_OUT_CLEAR) || ((SOURCE) == LPTIM3_OUT_CLEAR))
 #endif /* LPTIM4 LPTIM5 */
 /**
-  * @}
-  */
-
+ * @}
+ */
 
 /** @defgroup FMC_SwapBankMapping_Config  SwapBankMapping Config
-  * @{
-  */
+ * @{
+ */
 #define FMC_SWAPBMAP_DISABLE             (0x00000000U)
 #define FMC_SWAPBMAP_SDRAM_SRAM          FMC_BCR1_BMAP_0
 #define FMC_SWAPBMAP_SDRAMB2             FMC_BCR1_BMAP_1
@@ -708,16 +694,16 @@ typedef enum
                                         ((__MODE__) == FMC_SWAPBMAP_SDRAM_SRAM) || \
                                         ((__MODE__) == FMC_SWAPBMAP_SDRAMB2))
 /**
-  * @}
-  */
+ * @}
+ */
 /**
-  * @}
-  */
+ * @}
+ */
 
 /* Exported macro ------------------------------------------------------------*/
 /** @defgroup HAL_Exported_Macros HAL Exported Macros
-  * @{
-  */
+ * @{
+ */
 #if defined(DUAL_CORE)
 /** @defgroup ART_Exported_Macros ART Exported Macros
   * @{
@@ -744,84 +730,84 @@ typedef enum
 #endif /* DUAL_CORE */
 
 /** @defgroup SYSCFG_Exported_Macros SYSCFG Exported Macros
-  * @{
-  */
+ * @{
+ */
 
 /** @brief  SYSCFG Break AXIRAM double ECC lock.
-  *         Enable and lock the connection of AXIRAM double ECC error to TIM1/8/15/16/17 and HRTIMER Break input.
-  * @note   The selected configuration is locked and can be unlocked only by system reset.
-            This feature is available on STM32H7 rev.B and above.
-  */
+ *         Enable and lock the connection of AXIRAM double ECC error to TIM1/8/15/16/17 and HRTIMER Break input.
+ * @note   The selected configuration is locked and can be unlocked only by system reset.
+ This feature is available on STM32H7 rev.B and above.
+ */
 #define __HAL_SYSCFG_BREAK_AXISRAM_DBL_ECC_LOCK()     SET_BIT(SYSCFG->CFGR, SYSCFG_CFGR_AXISRAML)
 
 /** @brief  SYSCFG Break ITCM double ECC lock.
-  *         Enable and lock the connection of ITCM double ECC error to TIM1/8/15/16/17 and HRTIMER Break input.
-  * @note   The selected configuration is locked and can be unlocked only by system reset.
-            This feature is available on STM32H7 rev.B and above.
-  */
+ *         Enable and lock the connection of ITCM double ECC error to TIM1/8/15/16/17 and HRTIMER Break input.
+ * @note   The selected configuration is locked and can be unlocked only by system reset.
+ This feature is available on STM32H7 rev.B and above.
+ */
 #define __HAL_SYSCFG_BREAK_ITCM_DBL_ECC_LOCK()        SET_BIT(SYSCFG->CFGR, SYSCFG_CFGR_ITCML)
 
 /** @brief  SYSCFG Break DTCM double ECC lock.
-  *         Enable and lock the connection of DTCM double ECC error to TIM1/8/15/16/17 and HRTIMER Break input.
-  * @note   The selected configuration is locked and can be unlocked only by system reset.
-            This feature is available on STM32H7 rev.B and above.
-  */
+ *         Enable and lock the connection of DTCM double ECC error to TIM1/8/15/16/17 and HRTIMER Break input.
+ * @note   The selected configuration is locked and can be unlocked only by system reset.
+ This feature is available on STM32H7 rev.B and above.
+ */
 #define __HAL_SYSCFG_BREAK_DTCM_DBL_ECC_LOCK()        SET_BIT(SYSCFG->CFGR, SYSCFG_CFGR_DTCML)
 
 /** @brief  SYSCFG Break SRAM1 double ECC lock.
-  *         Enable and lock the connection of SRAM1 double ECC error to TIM1/8/15/16/17 and HRTIMER Break input.
-  * @note   The selected configuration is locked and can be unlocked only by system reset.
-            This feature is available on STM32H7 rev.B and above.
-  */
+ *         Enable and lock the connection of SRAM1 double ECC error to TIM1/8/15/16/17 and HRTIMER Break input.
+ * @note   The selected configuration is locked and can be unlocked only by system reset.
+ This feature is available on STM32H7 rev.B and above.
+ */
 #define __HAL_SYSCFG_BREAK_SRAM1_DBL_ECC_LOCK()       SET_BIT(SYSCFG->CFGR, SYSCFG_CFGR_SRAM1L)
 
 /** @brief  SYSCFG Break SRAM2 double ECC lock.
-  *         Enable and lock the connection of SRAM2 double ECC error to TIM1/8/15/16/17 and HRTIMER Break input.
-  * @note   The selected configuration is locked and can be unlocked only by system reset.
-            This feature is available on STM32H7 rev.B and above.
-  */
+ *         Enable and lock the connection of SRAM2 double ECC error to TIM1/8/15/16/17 and HRTIMER Break input.
+ * @note   The selected configuration is locked and can be unlocked only by system reset.
+ This feature is available on STM32H7 rev.B and above.
+ */
 #define __HAL_SYSCFG_BREAK_SRAM2_DBL_ECC_LOCK()       SET_BIT(SYSCFG->CFGR, SYSCFG_CFGR_SRAM2L)
 
 /** @brief  SYSCFG Break SRAM3 double ECC lock.
-  *         Enable and lock the connection of SRAM3 double ECC error to TIM1/8/15/16/17 and HRTIMER Break input.
-  * @note   The selected configuration is locked and can be unlocked only by system reset.
-            This feature is available on STM32H7 rev.B and above.
-  */
+ *         Enable and lock the connection of SRAM3 double ECC error to TIM1/8/15/16/17 and HRTIMER Break input.
+ * @note   The selected configuration is locked and can be unlocked only by system reset.
+ This feature is available on STM32H7 rev.B and above.
+ */
 #define __HAL_SYSCFG_BREAK_SRAM3_DBL_ECC_LOCK()       SET_BIT(SYSCFG->CFGR, SYSCFG_CFGR_SRAM3L)
 
 /** @brief  SYSCFG Break SRAM4 double ECC lock.
-  *         Enable and lock the connection of SRAM4 double ECC error to TIM1/8/15/16/17 and HRTIMER Break input.
-  * @note   The selected configuration is locked and can be unlocked only by system reset.
-            This feature is available on STM32H7 rev.B and above.
-  */
+ *         Enable and lock the connection of SRAM4 double ECC error to TIM1/8/15/16/17 and HRTIMER Break input.
+ * @note   The selected configuration is locked and can be unlocked only by system reset.
+ This feature is available on STM32H7 rev.B and above.
+ */
 #define __HAL_SYSCFG_BREAK_SRAM4_DBL_ECC_LOCK()       SET_BIT(SYSCFG->CFGR, SYSCFG_CFGR_SRAM4L)
 
 /** @brief  SYSCFG Break Backup SRAM double ECC lock.
-  *         Enable and lock the connection of Backup SRAM double ECC error to TIM1/8/15/16/17 and HRTIMER Break input.
-  * @note   The selected configuration is locked and can be unlocked only by system reset.
-            This feature is available on STM32H7 rev.B and above.
-  */
+ *         Enable and lock the connection of Backup SRAM double ECC error to TIM1/8/15/16/17 and HRTIMER Break input.
+ * @note   The selected configuration is locked and can be unlocked only by system reset.
+ This feature is available on STM32H7 rev.B and above.
+ */
 #define __HAL_SYSCFG_BREAK_BKRAM_DBL_ECC_LOCK()       SET_BIT(SYSCFG->CFGR, SYSCFG_CFGR_BKRAML)
 
 /** @brief  SYSCFG Break Cortex-M7 Lockup lock.
-  *         Enable and lock the connection of Cortex-M7 LOCKUP output to TIM1/8/15/16/17 and HRTIMER Break input.
-  * @note   The selected configuration is locked and can be unlocked only by system reset.
-            This feature is available on STM32H7 rev.B and above.
-  */
+ *         Enable and lock the connection of Cortex-M7 LOCKUP output to TIM1/8/15/16/17 and HRTIMER Break input.
+ * @note   The selected configuration is locked and can be unlocked only by system reset.
+ This feature is available on STM32H7 rev.B and above.
+ */
 #define __HAL_SYSCFG_BREAK_CM7_LOCKUP_LOCK()          SET_BIT(SYSCFG->CFGR, SYSCFG_CFGR_CM7L)
 
 /** @brief  SYSCFG Break FLASH double ECC lock.
-  *         Enable and lock the connection of Flash double ECC error connection to TIM1/8/15/16/17 and HRTIMER Break input.
-  * @note   The selected configuration is locked and can be unlocked only by system reset.
-            This feature is available on STM32H7 rev.B and above.
-  */
+ *         Enable and lock the connection of Flash double ECC error connection to TIM1/8/15/16/17 and HRTIMER Break input.
+ * @note   The selected configuration is locked and can be unlocked only by system reset.
+ This feature is available on STM32H7 rev.B and above.
+ */
 #define __HAL_SYSCFG_BREAK_FLASH_DBL_ECC_LOCK()       SET_BIT(SYSCFG->CFGR, SYSCFG_CFGR_FLASHL)
 
 /** @brief  SYSCFG Break PVD lock.
-  *         Enable and lock the PVD connection to Timer1/8/15/16/17 and HRTIMER Break input, as well as the PVDE and PLS[2:0] in the PWR_CR1 register.
-  * @note   The selected configuration is locked and can be unlocked only by system reset.
-            This feature is available on STM32H7 rev.B and above.
-  */
+ *         Enable and lock the PVD connection to Timer1/8/15/16/17 and HRTIMER Break input, as well as the PVDE and PLS[2:0] in the PWR_CR1 register.
+ * @note   The selected configuration is locked and can be unlocked only by system reset.
+ This feature is available on STM32H7 rev.B and above.
+ */
 #define __HAL_SYSCFG_BREAK_PVD_LOCK()                 SET_BIT(SYSCFG->CFGR, SYSCFG_CFGR_PVDL)
 
 #if defined(DUAL_CORE)
@@ -851,15 +837,15 @@ typedef enum
 
 #endif /* !SYSCFG_PMCR_BOOSTEN */
 /**
-  * @}
-  */
+ * @}
+ */
 
 /** @defgroup DBG_Exported_Macros DBG Exported Macros
-  * @{
-  */
+ * @{
+ */
 
 /** @brief  Freeze/Unfreeze Peripherals in Debug mode
-  */
+ */
 #define __HAL_DBGMCU_FREEZE_WWDG1()          (DBGMCU->APB3FZ1 |= (DBGMCU_APB3FZ1_DBG_WWDG1))
 
 #define __HAL_DBGMCU_FREEZE_TIM2()           (DBGMCU->APB1LFZ1 |= (DBGMCU_APB1LFZ1_DBG_TIM2))
@@ -904,7 +890,6 @@ typedef enum
 #define __HAL_DBGMCU_FREEZE_RTC()            (DBGMCU->APB4FZ1 |= (DBGMCU_APB4FZ1_DBG_RTC))
 #define __HAL_DBGMCU_FREEZE_IWDG1()          (DBGMCU->APB4FZ1 |= (DBGMCU_APB4FZ1_DBG_IWDG1))
 
-
 #define __HAL_DBGMCU_UnFreeze_WWDG1()          (DBGMCU->APB3FZ1  &= ~ (DBGMCU_APB3FZ1_DBG_WWDG1))
 
 #define __HAL_DBGMCU_UnFreeze_TIM2()           (DBGMCU->APB1LFZ1  &= ~ (DBGMCU_APB1LFZ1_DBG_TIM2))
@@ -948,7 +933,6 @@ typedef enum
 #define __HAL_DBGMCU_UnFreeze_LPTIM5()         (DBGMCU->APB4FZ1  &= ~ (DBGMCU_APB4FZ1_DBG_LPTIM5))
 #define __HAL_DBGMCU_UnFreeze_RTC()            (DBGMCU->APB4FZ1  &= ~ (DBGMCU_APB4FZ1_DBG_RTC))
 #define __HAL_DBGMCU_UnFreeze_IWDG1()          (DBGMCU->APB4FZ1  &= ~ (DBGMCU_APB4FZ1_DBG_IWDG1))
-
 
 #if defined(DUAL_CORE)
 #define __HAL_DBGMCU_FREEZE2_IWDG2()          (DBGMCU->APB4FZ2  |= (DBGMCU_APB4FZ2_DBG_IWDG2))
@@ -1026,51 +1010,51 @@ typedef enum
 
 #endif /*DUAL_CORE*/
 /**
-  * @}
-  */
+ * @}
+ */
 /**
-  * @}
-  */
+ * @}
+ */
 
 /** @defgroup HAL_Private_Macros HAL Private Macros
-  * @{
-  */
+ * @{
+ */
 #define IS_TICKFREQ(FREQ) (((FREQ) == HAL_TICK_FREQ_10HZ)  || \
                            ((FREQ) == HAL_TICK_FREQ_100HZ) || \
                            ((FREQ) == HAL_TICK_FREQ_1KHZ))
 /**
-  * @}
-  */
+ * @}
+ */
 
 /* Exported variables --------------------------------------------------------*/
 
 /** @addtogroup HAL_Exported_Variables
-  * @{
-  */
+ * @{
+ */
 extern __IO uint32_t uwTick;
 extern uint32_t uwTickPrio;
 extern HAL_TickFreqTypeDef uwTickFreq;
 /**
-  * @}
-  */
+ * @}
+ */
 
 /* Exported functions --------------------------------------------------------*/
 /** @defgroup HAL_Exported_Functions HAL Exported Functions
-  * @{
-  */
+ * @{
+ */
 /* Initialization and de-initialization functions  ******************************/
 /** @defgroup HAL_Group1 Initialization and de-initialization Functions
-  * @{
-  */
+ * @{
+ */
 HAL_StatusTypeDef HAL_Init(void);
 HAL_StatusTypeDef HAL_DeInit(void);
 void HAL_MspInit(void);
 void HAL_MspDeInit(void);
-HAL_StatusTypeDef HAL_InitTick (uint32_t TickPriority);
+HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority);
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /* Peripheral Control functions  ************************************************/
 /** @defgroup HAL_Group2 HAL Control functions
@@ -1093,7 +1077,8 @@ uint32_t HAL_GetUIDw2(void);
 #if defined(SYSCFG_PMCR_EPIS_SEL)
 void HAL_SYSCFG_ETHInterfaceSelect(uint32_t SYSCFG_ETHInterface);
 #endif /* SYSCFG_PMCR_EPIS_SEL */
-void HAL_SYSCFG_AnalogSwitchConfig(uint32_t SYSCFG_AnalogSwitch , uint32_t SYSCFG_SwitchState );
+void HAL_SYSCFG_AnalogSwitchConfig(uint32_t SYSCFG_AnalogSwitch,
+		uint32_t SYSCFG_SwitchState);
 #if defined(SYSCFG_PMCR_BOOSTEN)
 void HAL_SYSCFG_EnableBOOST(void);
 void HAL_SYSCFG_DisableBOOST(void);
@@ -1115,7 +1100,8 @@ void HAL_DisableCompensationCell(void);
 void HAL_SYSCFG_EnableIOSpeedOptimize(void);
 void HAL_SYSCFG_DisableIOSpeedOptimize(void);
 void HAL_SYSCFG_CompensationCodeSelect(uint32_t SYSCFG_CompCode);
-void HAL_SYSCFG_CompensationCodeConfig(uint32_t SYSCFG_PMOSCode, uint32_t SYSCFG_NMOSCode);
+void HAL_SYSCFG_CompensationCodeConfig(uint32_t SYSCFG_PMOSCode,
+		uint32_t SYSCFG_NMOSCode);
 #if defined(SYSCFG_CCCR_NCC_MMC)
 void HAL_SYSCFG_VDDMMC_CompensationCodeConfig(uint32_t SYSCFG_PMOSCode, uint32_t SYSCFG_NMOSCode);
 #endif /* SYSCFG_CCCR_NCC_MMC */
@@ -1141,17 +1127,19 @@ void HAL_DisableDomain3DBGStopMode(void);
 void HAL_EnableDomain3DBGStandbyMode(void);
 void HAL_DisableDomain3DBGStandbyMode(void);
 #endif /*DBGMCU_CR_DBG_STANDBYD3*/
-void HAL_EXTI_EdgeConfig(uint32_t EXTI_Line , uint32_t EXTI_Edge );
+void HAL_EXTI_EdgeConfig(uint32_t EXTI_Line, uint32_t EXTI_Edge);
 void HAL_EXTI_GenerateSWInterrupt(uint32_t EXTI_Line);
 #if defined(DUAL_CORE)
 void HAL_EXTI_D2_ClearFlag(uint32_t EXTI_Line);
 #endif /*DUAL_CORE*/
 void HAL_EXTI_D1_ClearFlag(uint32_t EXTI_Line);
-void HAL_EXTI_D1_EventInputConfig(uint32_t EXTI_Line , uint32_t EXTI_Mode,  uint32_t EXTI_LineCmd);
+void HAL_EXTI_D1_EventInputConfig(uint32_t EXTI_Line, uint32_t EXTI_Mode,
+		uint32_t EXTI_LineCmd);
 #if defined(DUAL_CORE)
 void HAL_EXTI_D2_EventInputConfig(uint32_t EXTI_Line , uint32_t EXTI_Mode,  uint32_t EXTI_LineCmd);
 #endif /*DUAL_CORE*/
-void HAL_EXTI_D3_EventInputConfig(uint32_t EXTI_Line, uint32_t EXTI_LineCmd , uint32_t EXTI_ClearSrc);
+void HAL_EXTI_D3_EventInputConfig(uint32_t EXTI_Line, uint32_t EXTI_LineCmd,
+		uint32_t EXTI_ClearSrc);
 void HAL_SetFMCMemorySwappingConfig(uint32_t BankMapConfig);
 uint32_t HAL_GetFMCMemorySwappingConfig(void);
 void HAL_SYSCFG_VREFBUF_VoltageScalingConfig(uint32_t VoltageScaling);
@@ -1167,25 +1155,24 @@ void HAL_SYSCFG_ADC2ALT_Rout1Config(uint32_t Adc2AltRout1);
 #endif /*SYSCFG_ADC2ALT_ADC2_ROUT1*/
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* STM32H7xx_HAL_H */
-
 

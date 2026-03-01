@@ -87,7 +87,6 @@
  * it can reduce code size in some embedded targets.
  */
 //#define MBEDTLS_NO_UDBL_DIVISION
-
 /**
  * \def MBEDTLS_NO_64BIT_MULTIPLICATION
  *
@@ -109,7 +108,6 @@
  * to using the library function provided by the toolchain.
  */
 //#define MBEDTLS_NO_64BIT_MULTIPLICATION
-
 /**
  * \def MBEDTLS_HAVE_SSE2
  *
@@ -118,7 +116,6 @@
  * Uncomment if the CPU supports SSE2 (IA-32 specific).
  */
 //#define MBEDTLS_HAVE_SSE2
-
 /**
  * \def MBEDTLS_HAVE_TIME
  *
@@ -178,7 +175,6 @@
  * Enable this layer to allow use of alternative memory allocators.
  */
 //#define MBEDTLS_PLATFORM_MEMORY
-
 /**
  * \def MBEDTLS_PLATFORM_NO_STD_FUNCTIONS
  *
@@ -197,7 +193,6 @@
  * platform layer.
  */
 //#define MBEDTLS_PLATFORM_NO_STD_FUNCTIONS
-
 /**
  * \def MBEDTLS_PLATFORM_EXIT_ALT
  *
@@ -228,7 +223,6 @@
 //#define MBEDTLS_PLATFORM_SNPRINTF_ALT
 //#define MBEDTLS_PLATFORM_NV_SEED_ALT
 //#define MBEDTLS_PLATFORM_SETUP_TEARDOWN_ALT
-
 /**
  * \def MBEDTLS_DEPRECATED_WARNING
  *
@@ -243,7 +237,6 @@
  * Uncomment to get warnings on using deprecated functions.
  */
 //#define MBEDTLS_DEPRECATED_WARNING
-
 /**
  * \def MBEDTLS_DEPRECATED_REMOVED
  *
@@ -255,7 +248,6 @@
  * Uncomment to get errors on using deprecated functions.
  */
 //#define MBEDTLS_DEPRECATED_REMOVED
-
 /**
  * \def MBEDTLS_CHECK_PARAMS
  *
@@ -297,7 +289,6 @@
  * Uncomment to enable validation of application-controlled parameters.
  */
 //#define MBEDTLS_CHECK_PARAMS
-
 /* \} name SECTION: System support */
 
 /**
@@ -320,7 +311,6 @@
  * compile time.
  */
 //#define MBEDTLS_TIMING_ALT
-
 /**
  * \def MBEDTLS_AES_ALT
  *
@@ -370,7 +360,6 @@
 //#define MBEDTLS_SHA256_ALT
 //#define MBEDTLS_SHA512_ALT
 //#define MBEDTLS_XTEA_ALT
-
 /*
  * When replacing the elliptic curve module, pleace consider, that it is
  * implemented with two .c files:
@@ -381,7 +370,6 @@
  * that you provide functionality for both .c files.
  */
 //#define MBEDTLS_ECP_ALT
-
 /**
  * \def MBEDTLS_MD2_PROCESS_ALT
  *
@@ -436,7 +424,6 @@
 //#define MBEDTLS_ECDSA_VERIFY_ALT
 //#define MBEDTLS_ECDSA_SIGN_ALT
 //#define MBEDTLS_ECDSA_GENKEY_ALT
-
 /**
  * \def MBEDTLS_ECP_INTERNAL_ALT
  *
@@ -489,7 +476,6 @@
 //#define MBEDTLS_ECP_DOUBLE_ADD_MXZ_ALT
 //#define MBEDTLS_ECP_RANDOMIZE_MXZ_ALT
 //#define MBEDTLS_ECP_NORMALIZE_MXZ_ALT
-
 /**
  * \def MBEDTLS_TEST_NULL_ENTROPY
  *
@@ -506,7 +492,6 @@
  *
  */
 //#define MBEDTLS_TEST_NULL_ENTROPY
-
 /**
  * \def MBEDTLS_ENTROPY_HARDWARE_ALT
  *
@@ -519,7 +504,6 @@
  * Uncomment to use your own hardware entropy collector.
  */
 //#define MBEDTLS_ENTROPY_HARDWARE_ALT
-
 /**
  * \def MBEDTLS_AES_ROM_TABLES
  *
@@ -539,7 +523,6 @@
  *
  */
 //#define MBEDTLS_AES_ROM_TABLES
-
 /**
  * \def MBEDTLS_AES_FEWER_TABLES
  *
@@ -561,7 +544,6 @@
  *
  */
 //#define MBEDTLS_AES_FEWER_TABLES
-
 /**
  * \def MBEDTLS_CAMELLIA_SMALL_MEMORY
  *
@@ -570,7 +552,6 @@
  * Uncomment this macro to use less memory for Camellia.
  */
 //#define MBEDTLS_CAMELLIA_SMALL_MEMORY
-
 /**
  * \def MBEDTLS_CIPHER_MODE_CBC
  *
@@ -638,7 +619,6 @@
  * Uncomment this macro to enable the NULL cipher and ciphersuites
  */
 //#define MBEDTLS_CIPHER_NULL_CIPHER
-
 /**
  * \def MBEDTLS_CIPHER_PADDING_PKCS7
  *
@@ -672,7 +652,6 @@
  *            security risk. We recommend considering stronger ciphers instead.
  */
 //#define MBEDTLS_ENABLE_WEAK_CIPHERSUITES
-
 /**
  * \def MBEDTLS_REMOVE_ARC4_CIPHERSUITES
  *
@@ -762,7 +741,6 @@
  *        MBEDTLS_ECP_ALT, MBEDTLS_ECDH_XXX_ALT and MBEDTLS_ECDSA_XXX_ALT.
  */
 //#define MBEDTLS_ECP_RESTARTABLE
-
 /**
  * \def MBEDTLS_ECDSA_DETERMINISTIC
  *
@@ -1051,7 +1029,6 @@
  *      MBEDTLS_TLS_ECJPAKE_WITH_AES_128_CCM_8
  */
 //#define MBEDTLS_KEY_EXCHANGE_ECJPAKE_ENABLED
-
 /**
  * \def MBEDTLS_PK_PARSE_EC_EXTENDED
  *
@@ -1109,7 +1086,6 @@
  * Uncomment this macro to prevent loading of default entropy functions.
  */
 //#define MBEDTLS_NO_DEFAULT_ENTROPY_SOURCES
-
 /**
  * \def MBEDTLS_NO_PLATFORM_ENTROPY
  *
@@ -1120,7 +1096,6 @@
  * Uncomment this macro to disable the built-in platform entropy functions.
  */
 //#define MBEDTLS_NO_PLATFORM_ENTROPY
-
 /**
  * \def MBEDTLS_ENTROPY_FORCE_SHA256
  *
@@ -1136,7 +1111,6 @@
  * MBEDTLS_SHA512_C are defined. Otherwise the available hash module is used.
  */
 //#define MBEDTLS_ENTROPY_FORCE_SHA256
-
 /**
  * \def MBEDTLS_ENTROPY_NV_SEED
  *
@@ -1164,7 +1138,6 @@
  *       given to an external source, to update it.
  */
 //#define MBEDTLS_ENTROPY_NV_SEED
-
 /**
  * \def MBEDTLS_MEMORY_DEBUG
  *
@@ -1177,7 +1150,6 @@
  * Uncomment this macro to let the buffer allocator print out error messages.
  */
 //#define MBEDTLS_MEMORY_DEBUG
-
 /**
  * \def MBEDTLS_MEMORY_BACKTRACE
  *
@@ -1189,7 +1161,6 @@
  * Uncomment this macro to include backtrace information
  */
 //#define MBEDTLS_MEMORY_BACKTRACE
-
 /**
  * \def MBEDTLS_PK_RSA_ALT_SUPPORT
  *
@@ -1231,7 +1202,6 @@
  *
  */
 //#define MBEDTLS_RSA_NO_CRT
-
 /**
  * \def MBEDTLS_SELF_TEST
  *
@@ -1254,7 +1224,6 @@
  * Uncomment to enable the smaller implementation of SHA256.
  */
 //#define MBEDTLS_SHA256_SMALLER
-
 /**
  * \def MBEDTLS_SSL_ALL_ALERT_MESSAGES
  *
@@ -1279,7 +1248,6 @@
  *
  */
 //#define MBEDTLS_SSL_ASYNC_PRIVATE
-
 /**
  * \def MBEDTLS_SSL_DEBUG_ALL
  *
@@ -1295,7 +1263,6 @@
  *
  */
 //#define MBEDTLS_SSL_DEBUG_ALL
-
 /** \def MBEDTLS_SSL_ENCRYPT_THEN_MAC
  *
  * Enable support for Encrypt-then-MAC, RFC 7366.
@@ -1358,7 +1325,6 @@
  * Uncomment this macro to enable hooking functions.
  */
 //#define MBEDTLS_SSL_HW_RECORD_ACCEL
-
 /**
  * \def MBEDTLS_SSL_CBC_RECORD_SPLITTING
  *
@@ -1402,7 +1368,6 @@
  * Uncomment this macro to enable support for SSLv2 Client Hello messages.
  */
 //#define MBEDTLS_SSL_SRV_SUPPORT_SSLV2_CLIENT_HELLO
-
 /**
  * \def MBEDTLS_SSL_SRV_RESPECT_CLIENT_PREFERENCE
  *
@@ -1412,7 +1377,6 @@
  * Uncomment this macro to respect client's ciphersuite order
  */
 //#define MBEDTLS_SSL_SRV_RESPECT_CLIENT_PREFERENCE
-
 /**
  * \def MBEDTLS_SSL_MAX_FRAGMENT_LENGTH
  *
@@ -1433,7 +1397,6 @@
  * Comment this macro to disable support for SSL 3.0
  */
 //#define MBEDTLS_SSL_PROTO_SSL3
-
 /**
  * \def MBEDTLS_SSL_PROTO_TLS1
  *
@@ -1621,7 +1584,6 @@
  * Requires: MBEDTLS_SSL_TRUNCATED_HMAC
  */
 //#define MBEDTLS_SSL_TRUNCATED_HMAC_COMPAT
-
 /**
  * \def MBEDTLS_THREADING_ALT
  *
@@ -1632,7 +1594,6 @@
  * Uncomment this to allow your own alternate threading implementation.
  */
 //#define MBEDTLS_THREADING_ALT
-
 /**
  * \def MBEDTLS_THREADING_PTHREAD
  *
@@ -1643,7 +1604,6 @@
  * Uncomment this to enable pthread mutexes.
  */
 //#define MBEDTLS_THREADING_PTHREAD
-
 /**
  * \def MBEDTLS_VERSION_FEATURES
  *
@@ -1666,7 +1626,6 @@
  * Uncomment to prevent an error.
  */
 //#define MBEDTLS_X509_ALLOW_EXTENSIONS_NON_V3
-
 /**
  * \def MBEDTLS_X509_ALLOW_UNSUPPORTED_CRITICAL_EXTENSION
  *
@@ -1678,7 +1637,6 @@
  * Uncomment to prevent an error.
  */
 //#define MBEDTLS_X509_ALLOW_UNSUPPORTED_CRITICAL_EXTENSION
-
 /**
  * \def MBEDTLS_X509_CHECK_KEY_USAGE
  *
@@ -2038,7 +1996,6 @@
  *      MBEDTLS_TLS_ECDHE_PSK_WITH_ARIA_256_CBC_SHA384
  */
 //#define MBEDTLS_ARIA_C
-
 /**
  * \def MBEDTLS_CCM_C
  *
@@ -2109,7 +2066,6 @@
  *
  */
 //#define MBEDTLS_CMAC_C
-
 /**
  * \def MBEDTLS_CTR_DRBG_C
  *
@@ -2239,7 +2195,6 @@
  * Requires: MBEDTLS_ECP_C, MBEDTLS_MD_C
  */
 //#define MBEDTLS_ECJPAKE_C
-
 /**
  * \def MBEDTLS_ECP_C
  *
@@ -2316,7 +2271,6 @@
  * Uncomment to enable the HAVEGE random generator.
  */
 //#define MBEDTLS_HAVEGE_C
-
 /**
  * \def MBEDTLS_HKDF_C
  *
@@ -2358,7 +2312,6 @@
  * Requires: MBEDTLS_AES_C and MBEDTLS_CIPHER_C
  */
 //#define MBEDTLS_NIST_KW_C
-
 /**
  * \def MBEDTLS_MD_C
  *
@@ -2387,7 +2340,6 @@
  *
  */
 //#define MBEDTLS_MD2_C
-
 /**
  * \def MBEDTLS_MD4_C
  *
@@ -2404,7 +2356,6 @@
  *
  */
 //#define MBEDTLS_MD4_C
-
 /**
  * \def MBEDTLS_MD5_C
  *
@@ -2442,7 +2393,6 @@
  * Enable this module to enable the buffer memory allocator.
  */
 //#define MBEDTLS_MEMORY_BUFFER_ALLOC_C
-
 /**
  * \def MBEDTLS_NET_C
  *
@@ -2605,7 +2555,6 @@
  * Requires the presence of the PKCS#11 helper library (libpkcs11-helper)
  */
 //#define MBEDTLS_PKCS11_C
-
 /**
  * \def MBEDTLS_PKCS12_C
  *
@@ -2835,7 +2784,6 @@
  * Enable this layer to allow use of mutexes within mbed TLS
  */
 //#define MBEDTLS_THREADING_C
-
 /**
  * \def MBEDTLS_TIMING_C
  *
@@ -3000,7 +2948,6 @@
 /* MPI / BIGNUM options */
 //#define MBEDTLS_MPI_WINDOW_SIZE            6 /**< Maximum windows size used. */
 //#define MBEDTLS_MPI_MAX_SIZE            1024 /**< Maximum number of bytes for usable MPIs. */
-
 /* CTR_DRBG options */
 //#define MBEDTLS_CTR_DRBG_ENTROPY_LEN               48 /**< Amount of entropy used per seed by default (48 with SHA-512, 32 with SHA-256) */
 //#define MBEDTLS_CTR_DRBG_RESEED_INTERVAL        10000 /**< Interval before reseed is performed by default */
@@ -3008,26 +2955,21 @@
 //#define MBEDTLS_CTR_DRBG_MAX_REQUEST             1024 /**< Maximum number of requested bytes per call */
 //#define MBEDTLS_CTR_DRBG_MAX_SEED_INPUT           384 /**< Maximum size of (re)seed buffer */
 //#define MBEDTLS_CTR_DRBG_USE_128_BIT_KEY              /**< Use 128-bit key for CTR_DRBG - may reduce security (see ctr_drbg.h) */
-
 /* HMAC_DRBG options */
 //#define MBEDTLS_HMAC_DRBG_RESEED_INTERVAL   10000 /**< Interval before reseed is performed by default */
 //#define MBEDTLS_HMAC_DRBG_MAX_INPUT           256 /**< Maximum number of additional input bytes */
 //#define MBEDTLS_HMAC_DRBG_MAX_REQUEST        1024 /**< Maximum number of requested bytes per call */
 //#define MBEDTLS_HMAC_DRBG_MAX_SEED_INPUT      384 /**< Maximum size of (re)seed buffer */
-
 /* ECP options */
 //#define MBEDTLS_ECP_MAX_BITS             521 /**< Maximum bit size of groups */
 //#define MBEDTLS_ECP_WINDOW_SIZE            6 /**< Maximum window size used */
 //#define MBEDTLS_ECP_FIXED_POINT_OPTIM      1 /**< Enable fixed-point speed-up */
-
 /* Entropy options */
 //#define MBEDTLS_ENTROPY_MAX_SOURCES                20 /**< Maximum number of sources supported */
 //#define MBEDTLS_ENTROPY_MAX_GATHER                128 /**< Maximum amount requested from entropy sources */
 //#define MBEDTLS_ENTROPY_MIN_HARDWARE               32 /**< Default minimum number of bytes required for the hardware entropy source mbedtls_hardware_poll() before entropy is released */
-
 /* Memory buffer allocator options */
 //#define MBEDTLS_MEMORY_ALIGN_MULTIPLE      4 /**< Align on multiples of this value */
-
 /* Platform options */
 //#define MBEDTLS_PLATFORM_STD_MEM_HDR   <stdlib.h> /**< Header to include if MBEDTLS_PLATFORM_NO_STD_FUNCTIONS is defined. Don't define if no header is needed. */
 //#define MBEDTLS_PLATFORM_STD_CALLOC        calloc /**< Default allocator to use, can be undefined */
@@ -3043,7 +2985,6 @@
 //#define MBEDTLS_PLATFORM_STD_NV_SEED_READ   mbedtls_platform_std_nv_seed_read /**< Default nv_seed_read function to use, can be undefined */
 //#define MBEDTLS_PLATFORM_STD_NV_SEED_WRITE  mbedtls_platform_std_nv_seed_write /**< Default nv_seed_write function to use, can be undefined */
 //#define MBEDTLS_PLATFORM_STD_NV_SEED_FILE  "seedfile" /**< Seed file to read/write with default implementation */
-
 /* To Use Function Macros MBEDTLS_PLATFORM_C must be enabled */
 /* MBEDTLS_PLATFORM_XXX_MACRO and MBEDTLS_PLATFORM_XXX_ALT cannot both be defined */
 //#define MBEDTLS_PLATFORM_CALLOC_MACRO        calloc /**< Default allocator macro to use, can be undefined */
@@ -3057,7 +2998,6 @@
 //#define MBEDTLS_PLATFORM_SNPRINTF_MACRO    snprintf /**< Default snprintf macro to use, can be undefined */
 //#define MBEDTLS_PLATFORM_NV_SEED_READ_MACRO   mbedtls_platform_std_nv_seed_read /**< Default nv_seed_read function to use, can be undefined */
 //#define MBEDTLS_PLATFORM_NV_SEED_WRITE_MACRO  mbedtls_platform_std_nv_seed_write /**< Default nv_seed_write function to use, can be undefined */
-
 /**
  * \brief       This macro is invoked by the library when an invalid parameter
  *              is detected that is only checked with MBEDTLS_CHECK_PARAMS
@@ -3087,11 +3027,9 @@
  * \param cond  The expression that should evaluate to true, but doesn't.
  */
 //#define MBEDTLS_PARAM_FAILED( cond )               assert( cond )
-
 /* SSL Cache options */
 //#define MBEDTLS_SSL_CACHE_DEFAULT_TIMEOUT       86400 /**< 1 day  */
 //#define MBEDTLS_SSL_CACHE_DEFAULT_MAX_ENTRIES      50 /**< Maximum entries in cache */
-
 /* SSL options */
 
 /** \def MBEDTLS_SSL_MAX_CONTENT_LEN
@@ -3119,7 +3057,6 @@
  * incoming and outgoing I/O buffers.
  */
 //#define MBEDTLS_SSL_MAX_CONTENT_LEN             16384
-
 /** \def MBEDTLS_SSL_IN_CONTENT_LEN
  *
  * Maximum length (in bytes) of incoming plaintext fragments.
@@ -3144,7 +3081,6 @@
  * independently of the outgoing I/O buffer.
  */
 //#define MBEDTLS_SSL_IN_CONTENT_LEN              16384
-
 /** \def MBEDTLS_SSL_OUT_CONTENT_LEN
  *
  * Maximum length (in bytes) of outgoing plaintext fragments.
@@ -3168,7 +3104,6 @@
  * independently of the incoming I/O buffer.
  */
 //#define MBEDTLS_SSL_OUT_CONTENT_LEN             16384
-
 /** \def MBEDTLS_SSL_DTLS_MAX_BUFFERING
  *
  * Maximum number of heap-allocated bytes for the purpose of
@@ -3185,11 +3120,9 @@
  *
  */
 //#define MBEDTLS_SSL_DTLS_MAX_BUFFERING             32768
-
 //#define MBEDTLS_SSL_DEFAULT_TICKET_LIFETIME     86400 /**< Lifetime of session tickets (if enabled) */
 //#define MBEDTLS_PSK_MAX_LEN               32 /**< Max size of TLS pre-shared keys, in bytes (default 256 bits) */
 //#define MBEDTLS_SSL_COOKIE_TIMEOUT        60 /**< Default expiration delay of DTLS cookies, in seconds if HAVE_TIME, or in number of cookies issued */
-
 /**
  * Complete list of ciphersuites to use, in order of preference.
  *
@@ -3203,11 +3136,9 @@
  * The value below is only an example, not the default.
  */
 //#define MBEDTLS_SSL_CIPHERSUITES MBEDTLS_TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,MBEDTLS_TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
-
 /* X509 options */
 //#define MBEDTLS_X509_MAX_INTERMEDIATE_CA   8   /**< Maximum number of intermediate CAs in a verification chain. */
 //#define MBEDTLS_X509_MAX_FILE_PATH_LEN     512 /**< Maximum length of a path/filename string in bytes including the null terminator character ('\0'). */
-
 /**
  * Allow SHA-1 in the default TLS configuration for certificate signing.
  * Without this build-time option, SHA-1 support must be activated explicitly
@@ -3221,7 +3152,6 @@
  *
  */
 // #define MBEDTLS_TLS_DEFAULT_ALLOW_SHA1_IN_CERTIFICATES
-
 /**
  * Allow SHA-1 in the default TLS configuration for TLS 1.2 handshake
  * signature and ciphersuite selection. Without this build-time option, SHA-1
@@ -3258,7 +3188,6 @@
  * their system (e.g explicit_bzero() in BSD).
  */
 //#define MBEDTLS_PLATFORM_ZEROIZE_ALT
-
 /**
  * Uncomment the macro to let Mbed TLS use your alternate implementation of
  * mbedtls_platform_gmtime_r(). This replaces the default implementation in
@@ -3277,7 +3206,6 @@
  * supplied at compile time.
  */
 //#define MBEDTLS_PLATFORM_GMTIME_R_ALT
-
 /* \} name SECTION: Customisation configuration options */
 
 /* Target and application specific configurations

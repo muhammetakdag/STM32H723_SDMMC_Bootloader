@@ -101,7 +101,7 @@ extern "C" {
  *                              - 3 Informational
  *                              - 4 Verbose
  */
-void mbedtls_debug_set_threshold( int threshold );
+void mbedtls_debug_set_threshold(int threshold);
 
 /**
  * \brief    Print a message to the debug output. This function is always used
@@ -118,9 +118,8 @@ void mbedtls_debug_set_threshold( int threshold );
  * \attention       This function is intended for INTERNAL usage within the
  *                  library only.
  */
-void mbedtls_debug_print_msg( const mbedtls_ssl_context *ssl, int level,
-                              const char *file, int line,
-                              const char *format, ... );
+void mbedtls_debug_print_msg(const mbedtls_ssl_context *ssl, int level,
+		const char *file, int line, const char *format, ...);
 
 /**
  * \brief   Print the return value of a function to the debug output. This
@@ -137,9 +136,8 @@ void mbedtls_debug_print_msg( const mbedtls_ssl_context *ssl, int level,
  * \attention       This function is intended for INTERNAL usage within the
  *                  library only.
  */
-void mbedtls_debug_print_ret( const mbedtls_ssl_context *ssl, int level,
-                      const char *file, int line,
-                      const char *text, int ret );
+void mbedtls_debug_print_ret(const mbedtls_ssl_context *ssl, int level,
+		const char *file, int line, const char *text, int ret);
 
 /**
  * \brief   Output a buffer of size len bytes to the debug output. This function
@@ -158,9 +156,9 @@ void mbedtls_debug_print_ret( const mbedtls_ssl_context *ssl, int level,
  * \attention       This function is intended for INTERNAL usage within the
  *                  library only.
  */
-void mbedtls_debug_print_buf( const mbedtls_ssl_context *ssl, int level,
-                      const char *file, int line, const char *text,
-                      const unsigned char *buf, size_t len );
+void mbedtls_debug_print_buf(const mbedtls_ssl_context *ssl, int level,
+		const char *file, int line, const char *text, const unsigned char *buf,
+		size_t len);
 
 #if defined(MBEDTLS_BIGNUM_C)
 /**

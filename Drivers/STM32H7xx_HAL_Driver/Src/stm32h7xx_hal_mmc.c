@@ -1,315 +1,315 @@
 /**
-  ******************************************************************************
-  * @file    stm32h7xx_hal_mmc.c
-  * @author  MCD Application Team
-  * @brief   MMC card HAL module driver.
-  *          This file provides firmware functions to manage the following
-  *          functionalities of the Secure Digital (MMC) peripheral:
-  *           + Initialization and de-initialization functions
-  *           + IO operation functions
-  *           + Peripheral Control functions
-  *           + MMC card Control functions
-  *
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  @verbatim
-  ==============================================================================
-                        ##### How to use this driver #####
-  ==============================================================================
-  [..]
-    This driver implements a high level communication layer for read and write from/to
-    this memory. The needed STM32 hardware resources (SDMMC and GPIO) are performed by
-    the user in HAL_MMC_MspInit() function (MSP layer).
-    Basically, the MSP layer configuration should be the same as we provide in the
-    examples.
-    You can easily tailor this configuration according to hardware resources.
+ ******************************************************************************
+ * @file    stm32h7xx_hal_mmc.c
+ * @author  MCD Application Team
+ * @brief   MMC card HAL module driver.
+ *          This file provides firmware functions to manage the following
+ *          functionalities of the Secure Digital (MMC) peripheral:
+ *           + Initialization and de-initialization functions
+ *           + IO operation functions
+ *           + Peripheral Control functions
+ *           + MMC card Control functions
+ *
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2017 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ @verbatim
+ ==============================================================================
+ ##### How to use this driver #####
+ ==============================================================================
+ [..]
+ This driver implements a high level communication layer for read and write from/to
+ this memory. The needed STM32 hardware resources (SDMMC and GPIO) are performed by
+ the user in HAL_MMC_MspInit() function (MSP layer).
+ Basically, the MSP layer configuration should be the same as we provide in the
+ examples.
+ You can easily tailor this configuration according to hardware resources.
 
-  [..]
-    This driver is a generic layered driver for SDMMC memories which uses the HAL
-    SDMMC driver functions to interface with MMC and eMMC cards devices.
-    It is used as follows:
+ [..]
+ This driver is a generic layered driver for SDMMC memories which uses the HAL
+ SDMMC driver functions to interface with MMC and eMMC cards devices.
+ It is used as follows:
 
-    (#)Initialize the SDMMC low level resources by implement the HAL_MMC_MspInit() API:
-        (##) Enable the SDMMC interface clock using __HAL_RCC_SDMMC_CLK_ENABLE();
-        (##) SDMMC pins configuration for MMC card
-            (+++) Enable the clock for the SDMMC GPIOs using the functions __HAL_RCC_GPIOx_CLK_ENABLE();
-            (+++) Configure these SDMMC pins as alternate function pull-up using HAL_GPIO_Init()
-                  and according to your pin assignment;
-        (##) NVIC configuration if you need to use interrupt process (HAL_MMC_ReadBlocks_IT()
-             and HAL_MMC_WriteBlocks_IT() APIs).
-            (+++) Configure the SDMMC interrupt priorities using function HAL_NVIC_SetPriority();
-            (+++) Enable the NVIC SDMMC IRQs using function HAL_NVIC_EnableIRQ()
-            (+++) SDMMC interrupts are managed using the macros __HAL_MMC_ENABLE_IT()
-                  and __HAL_MMC_DISABLE_IT() inside the communication process.
-            (+++) SDMMC interrupts pending bits are managed using the macros __HAL_MMC_GET_IT()
-                  and __HAL_MMC_CLEAR_IT()
-        (##) No general propose DMA Configuration is needed, an Internal DMA for SDMMC Peripheral are used.
+ (#)Initialize the SDMMC low level resources by implement the HAL_MMC_MspInit() API:
+ (##) Enable the SDMMC interface clock using __HAL_RCC_SDMMC_CLK_ENABLE();
+ (##) SDMMC pins configuration for MMC card
+ (+++) Enable the clock for the SDMMC GPIOs using the functions __HAL_RCC_GPIOx_CLK_ENABLE();
+ (+++) Configure these SDMMC pins as alternate function pull-up using HAL_GPIO_Init()
+ and according to your pin assignment;
+ (##) NVIC configuration if you need to use interrupt process (HAL_MMC_ReadBlocks_IT()
+ and HAL_MMC_WriteBlocks_IT() APIs).
+ (+++) Configure the SDMMC interrupt priorities using function HAL_NVIC_SetPriority();
+ (+++) Enable the NVIC SDMMC IRQs using function HAL_NVIC_EnableIRQ()
+ (+++) SDMMC interrupts are managed using the macros __HAL_MMC_ENABLE_IT()
+ and __HAL_MMC_DISABLE_IT() inside the communication process.
+ (+++) SDMMC interrupts pending bits are managed using the macros __HAL_MMC_GET_IT()
+ and __HAL_MMC_CLEAR_IT()
+ (##) No general propose DMA Configuration is needed, an Internal DMA for SDMMC Peripheral are used.
 
-    (#) At this stage, you can perform MMC read/write/erase operations after MMC card initialization
+ (#) At this stage, you can perform MMC read/write/erase operations after MMC card initialization
 
-  *** MMC Card Initialization and configuration ***
-  ================================================
-  [..]
-    To initialize the MMC Card, use the HAL_MMC_Init() function. It Initializes
-    SDMMC Peripheral (STM32 side) and the MMC Card, and put it into StandBy State (Ready for data transfer).
-    This function provide the following operations:
+ *** MMC Card Initialization and configuration ***
+ ================================================
+ [..]
+ To initialize the MMC Card, use the HAL_MMC_Init() function. It Initializes
+ SDMMC Peripheral (STM32 side) and the MMC Card, and put it into StandBy State (Ready for data transfer).
+ This function provide the following operations:
 
-    (#) Initialize the SDMMC peripheral interface with default configuration.
-        The initialization process is done at 400KHz. You can change or adapt
-        this frequency by adjusting the "ClockDiv" field.
-        The MMC Card frequency (SDMMC_CK) is computed as follows:
+ (#) Initialize the SDMMC peripheral interface with default configuration.
+ The initialization process is done at 400KHz. You can change or adapt
+ this frequency by adjusting the "ClockDiv" field.
+ The MMC Card frequency (SDMMC_CK) is computed as follows:
 
-           SDMMC_CK = SDMMCCLK / (2 * ClockDiv)
+ SDMMC_CK = SDMMCCLK / (2 * ClockDiv)
 
-        In initialization mode and according to the MMC Card standard,
-        make sure that the SDMMC_CK frequency doesn't exceed 400KHz.
+ In initialization mode and according to the MMC Card standard,
+ make sure that the SDMMC_CK frequency doesn't exceed 400KHz.
 
-        This phase of initialization is done through SDMMC_Init() and
-        SDMMC_PowerState_ON() SDMMC low level APIs.
+ This phase of initialization is done through SDMMC_Init() and
+ SDMMC_PowerState_ON() SDMMC low level APIs.
 
-    (#) Initialize the MMC card. The API used is HAL_MMC_InitCard().
-        This phase allows the card initialization and identification
-        and check the MMC Card type (Standard Capacity or High Capacity)
-        The initialization flow is compatible with MMC standard.
+ (#) Initialize the MMC card. The API used is HAL_MMC_InitCard().
+ This phase allows the card initialization and identification
+ and check the MMC Card type (Standard Capacity or High Capacity)
+ The initialization flow is compatible with MMC standard.
 
-        This API (HAL_MMC_InitCard()) could be used also to reinitialize the card in case
-        of plug-off plug-in.
+ This API (HAL_MMC_InitCard()) could be used also to reinitialize the card in case
+ of plug-off plug-in.
 
-    (#) Configure the MMC Card Data transfer frequency. By Default, the card transfer
-        frequency by adjusting the "ClockDiv" field.
-        In transfer mode and according to the MMC Card standard, make sure that the
-        SDMMC_CK frequency doesn't exceed 25MHz and 100MHz in High-speed mode switch.
+ (#) Configure the MMC Card Data transfer frequency. By Default, the card transfer
+ frequency by adjusting the "ClockDiv" field.
+ In transfer mode and according to the MMC Card standard, make sure that the
+ SDMMC_CK frequency doesn't exceed 25MHz and 100MHz in High-speed mode switch.
 
-    (#) Select the corresponding MMC Card according to the address read with the step 2.
+ (#) Select the corresponding MMC Card according to the address read with the step 2.
 
-    (#) Configure the MMC Card in wide bus mode: 4-bits data.
-    (#) Select the MMC Card partition using HAL_MMC_SwitchPartition()
+ (#) Configure the MMC Card in wide bus mode: 4-bits data.
+ (#) Select the MMC Card partition using HAL_MMC_SwitchPartition()
 
-  *** MMC Card Read operation ***
-  ==============================
-  [..]
-    (+) You can read from MMC card in polling mode by using function HAL_MMC_ReadBlocks().
-        This function support only 512-bytes block length (the block size should be
-        chosen as 512 bytes).
-        You can choose either one block read operation or multiple block read operation
-        by adjusting the "NumberOfBlocks" parameter.
-        After this, you have to ensure that the transfer is done correctly. The check is done
-        through HAL_MMC_GetCardState() function for MMC card state.
+ *** MMC Card Read operation ***
+ ==============================
+ [..]
+ (+) You can read from MMC card in polling mode by using function HAL_MMC_ReadBlocks().
+ This function support only 512-bytes block length (the block size should be
+ chosen as 512 bytes).
+ You can choose either one block read operation or multiple block read operation
+ by adjusting the "NumberOfBlocks" parameter.
+ After this, you have to ensure that the transfer is done correctly. The check is done
+ through HAL_MMC_GetCardState() function for MMC card state.
 
-    (+) You can read from MMC card in DMA mode by using function HAL_MMC_ReadBlocks_DMA().
-        This function support only 512-bytes block length (the block size should be
-        chosen as 512 bytes).
-        You can choose either one block read operation or multiple block read operation
-        by adjusting the "NumberOfBlocks" parameter.
-        After this, you have to ensure that the transfer is done correctly. The check is done
-        through HAL_MMC_GetCardState() function for MMC card state.
-        You could also check the DMA transfer process through the MMC Rx interrupt event.
+ (+) You can read from MMC card in DMA mode by using function HAL_MMC_ReadBlocks_DMA().
+ This function support only 512-bytes block length (the block size should be
+ chosen as 512 bytes).
+ You can choose either one block read operation or multiple block read operation
+ by adjusting the "NumberOfBlocks" parameter.
+ After this, you have to ensure that the transfer is done correctly. The check is done
+ through HAL_MMC_GetCardState() function for MMC card state.
+ You could also check the DMA transfer process through the MMC Rx interrupt event.
 
-    (+) You can read from MMC card in Interrupt mode by using function HAL_MMC_ReadBlocks_IT().
-        This function allows the read of 512 bytes blocks.
-        You can choose either one block read operation or multiple block read operation
-        by adjusting the "NumberOfBlocks" parameter.
-        After this, you have to ensure that the transfer is done correctly. The check is done
-        through HAL_MMC_GetCardState() function for MMC card state.
-        You could also check the IT transfer process through the MMC Rx interrupt event.
+ (+) You can read from MMC card in Interrupt mode by using function HAL_MMC_ReadBlocks_IT().
+ This function allows the read of 512 bytes blocks.
+ You can choose either one block read operation or multiple block read operation
+ by adjusting the "NumberOfBlocks" parameter.
+ After this, you have to ensure that the transfer is done correctly. The check is done
+ through HAL_MMC_GetCardState() function for MMC card state.
+ You could also check the IT transfer process through the MMC Rx interrupt event.
 
-  *** MMC Card Write operation ***
-  ===============================
-  [..]
-    (+) You can write to MMC card in polling mode by using function HAL_MMC_WriteBlocks().
-        This function support only 512-bytes block length (the block size should be
-        chosen as 512 bytes).
-        You can choose either one block read operation or multiple block read operation
-        by adjusting the "NumberOfBlocks" parameter.
-        After this, you have to ensure that the transfer is done correctly. The check is done
-        through HAL_MMC_GetCardState() function for MMC card state.
+ *** MMC Card Write operation ***
+ ===============================
+ [..]
+ (+) You can write to MMC card in polling mode by using function HAL_MMC_WriteBlocks().
+ This function support only 512-bytes block length (the block size should be
+ chosen as 512 bytes).
+ You can choose either one block read operation or multiple block read operation
+ by adjusting the "NumberOfBlocks" parameter.
+ After this, you have to ensure that the transfer is done correctly. The check is done
+ through HAL_MMC_GetCardState() function for MMC card state.
 
-    (+) You can write to MMC card in DMA mode by using function HAL_MMC_WriteBlocks_DMA().
-        This function support only 512-bytes block length (the block size should be
-        chosen as 512 byte).
-        You can choose either one block read operation or multiple block read operation
-        by adjusting the "NumberOfBlocks" parameter.
-        After this, you have to ensure that the transfer is done correctly. The check is done
-        through HAL_MMC_GetCardState() function for MMC card state.
-        You could also check the DMA transfer process through the MMC Tx interrupt event.
+ (+) You can write to MMC card in DMA mode by using function HAL_MMC_WriteBlocks_DMA().
+ This function support only 512-bytes block length (the block size should be
+ chosen as 512 byte).
+ You can choose either one block read operation or multiple block read operation
+ by adjusting the "NumberOfBlocks" parameter.
+ After this, you have to ensure that the transfer is done correctly. The check is done
+ through HAL_MMC_GetCardState() function for MMC card state.
+ You could also check the DMA transfer process through the MMC Tx interrupt event.
 
-    (+) You can write to MMC card in Interrupt mode by using function HAL_MMC_WriteBlocks_IT().
-        This function allows the read of 512 bytes blocks.
-        You can choose either one block read operation or multiple block read operation
-        by adjusting the "NumberOfBlocks" parameter.
-        After this, you have to ensure that the transfer is done correctly. The check is done
-        through HAL_MMC_GetCardState() function for MMC card state.
-        You could also check the IT transfer process through the MMC Tx interrupt event.
+ (+) You can write to MMC card in Interrupt mode by using function HAL_MMC_WriteBlocks_IT().
+ This function allows the read of 512 bytes blocks.
+ You can choose either one block read operation or multiple block read operation
+ by adjusting the "NumberOfBlocks" parameter.
+ After this, you have to ensure that the transfer is done correctly. The check is done
+ through HAL_MMC_GetCardState() function for MMC card state.
+ You could also check the IT transfer process through the MMC Tx interrupt event.
 
-  *** MMC card information ***
-  ===========================
-  [..]
-    (+) To get MMC card information, you can use the function HAL_MMC_GetCardInfo().
-        It returns useful information about the MMC card such as block size, card type,
-        block number ...
+ *** MMC card information ***
+ ===========================
+ [..]
+ (+) To get MMC card information, you can use the function HAL_MMC_GetCardInfo().
+ It returns useful information about the MMC card such as block size, card type,
+ block number ...
 
-  *** MMC card CSD register ***
-  ============================
-  [..]
-    (+) The HAL_MMC_GetCardCSD() API allows to get the parameters of the CSD register.
-        Some of the CSD parameters are useful for card initialization and identification.
+ *** MMC card CSD register ***
+ ============================
+ [..]
+ (+) The HAL_MMC_GetCardCSD() API allows to get the parameters of the CSD register.
+ Some of the CSD parameters are useful for card initialization and identification.
 
-  *** MMC card CID register ***
-  ============================
-  [..]
-    (+) The HAL_MMC_GetCardCID() API allows to get the parameters of the CID register.
-        Some of the CID parameters are useful for card initialization and identification.
+ *** MMC card CID register ***
+ ============================
+ [..]
+ (+) The HAL_MMC_GetCardCID() API allows to get the parameters of the CID register.
+ Some of the CID parameters are useful for card initialization and identification.
 
-  *** MMC Card Reply Protected Memory Block (RPMB) Key Programming operation ***
-  ==============================
-  [..]
-    (+) You can program the authentication key of RPMB area in polling mode by using function
-        HAL_MMC_RPMB_ProgramAuthenticationKey().
-        This function is only used once during the life of an MMC card.
-        After this, you have to ensure that the transfer is done correctly. The check is done
-        through HAL_MMC_GetRPMBError() function for operation state.
-    (+) You can program the authentication key of RPMB area in Interrupt mode by using function
-        HAL_MMC_RPMB_ProgramAuthenticationKey_IT().
-        This function is only used once during the life of an MMC card.
-        After this, you have to ensure that the transfer is done correctly. The check is done
-        through HAL_MMC_GetRPMBError() function for operation state.
+ *** MMC Card Reply Protected Memory Block (RPMB) Key Programming operation ***
+ ==============================
+ [..]
+ (+) You can program the authentication key of RPMB area in polling mode by using function
+ HAL_MMC_RPMB_ProgramAuthenticationKey().
+ This function is only used once during the life of an MMC card.
+ After this, you have to ensure that the transfer is done correctly. The check is done
+ through HAL_MMC_GetRPMBError() function for operation state.
+ (+) You can program the authentication key of RPMB area in Interrupt mode by using function
+ HAL_MMC_RPMB_ProgramAuthenticationKey_IT().
+ This function is only used once during the life of an MMC card.
+ After this, you have to ensure that the transfer is done correctly. The check is done
+ through HAL_MMC_GetRPMBError() function for operation state.
 
-  *** MMC Card Reply Protected Memory Block (RPMB) write counter operation ***
-  ==============================
-  [..]
-    (+) You can get the write counter value of RPMB area in polling mode by using function
-        HAL_MMC_RPMB_GetWriteCounter().
-    (+) You can get the write counter value of RPMB area in Interrupt mode by using function
-        HAL_MMC_RPMB_GetWriteCounter_IT().
+ *** MMC Card Reply Protected Memory Block (RPMB) write counter operation ***
+ ==============================
+ [..]
+ (+) You can get the write counter value of RPMB area in polling mode by using function
+ HAL_MMC_RPMB_GetWriteCounter().
+ (+) You can get the write counter value of RPMB area in Interrupt mode by using function
+ HAL_MMC_RPMB_GetWriteCounter_IT().
 
-  *** MMC Card Reply Protected Memory Block (RPMB) write operation ***
-  ==============================
-  [..]
-    (+) You can write to the RPMB area of MMC card in polling mode by using function
-        HAL_MMC_WriteBlocks().
-        This function supports the one, two, or thirty two blocks write operation
-        (with 512-bytes block length).
-        You can choose the number of blocks at the multiple block read operation by adjusting
-        the "NumberOfBlocks" parameter.
-        After this, you have to ensure that the transfer is done correctly. The check is done
-        through HAL_MMC_GetRPMBError() function for operation state.
-    (+) You can write to the RPMB area of MMC card in Interrupt mode by using function
-        HAL_MMC_WriteBlocks_IT().
-        This function supports the one, two, or thirty two blocks write operation
-        (with 512-bytes block length).
-        You can choose the number of blocks at the multiple block read operation by adjusting
-        the "NumberOfBlocks" parameter.
-        After this, you have to ensure that the transfer is done correctly. The check is done
-        through HAL_MMC_GetRPMBError() function for operation state.
+ *** MMC Card Reply Protected Memory Block (RPMB) write operation ***
+ ==============================
+ [..]
+ (+) You can write to the RPMB area of MMC card in polling mode by using function
+ HAL_MMC_WriteBlocks().
+ This function supports the one, two, or thirty two blocks write operation
+ (with 512-bytes block length).
+ You can choose the number of blocks at the multiple block read operation by adjusting
+ the "NumberOfBlocks" parameter.
+ After this, you have to ensure that the transfer is done correctly. The check is done
+ through HAL_MMC_GetRPMBError() function for operation state.
+ (+) You can write to the RPMB area of MMC card in Interrupt mode by using function
+ HAL_MMC_WriteBlocks_IT().
+ This function supports the one, two, or thirty two blocks write operation
+ (with 512-bytes block length).
+ You can choose the number of blocks at the multiple block read operation by adjusting
+ the "NumberOfBlocks" parameter.
+ After this, you have to ensure that the transfer is done correctly. The check is done
+ through HAL_MMC_GetRPMBError() function for operation state.
 
-  *** MMC Card Reply Protected Memory Block (RPMB) read operation ***
-  ==============================
-  [..]
-    (+) You can read from the RPMB area of MMC card in polling mode by using function
-        HAL_MMC_RPMB_ReadBlocks().
-        The block size should be chosen as multiple of 512 bytes.
-        You can choose the number of blocks by adjusting the "NumberOfBlocks" parameter.
-        After this, you have to ensure that the transfer is done correctly. The check is done
-        through HAL_MMC_GetRPMBError() function for MMC card state.
-    (+) You can read from the RPMB area of MMC card in Interrupt mode by using function
-        HAL_MMC_RPMB_ReadBlocks_IT().
-        The block size should be chosen as multiple of 512 bytes.
-        You can choose the number of blocks by adjusting the "NumberOfBlocks" parameter.
-        After this, you have to ensure that the transfer is done correctly. The check is done
-        through HAL_MMC_GetRPMBError() function for MMC card state.
+ *** MMC Card Reply Protected Memory Block (RPMB) read operation ***
+ ==============================
+ [..]
+ (+) You can read from the RPMB area of MMC card in polling mode by using function
+ HAL_MMC_RPMB_ReadBlocks().
+ The block size should be chosen as multiple of 512 bytes.
+ You can choose the number of blocks by adjusting the "NumberOfBlocks" parameter.
+ After this, you have to ensure that the transfer is done correctly. The check is done
+ through HAL_MMC_GetRPMBError() function for MMC card state.
+ (+) You can read from the RPMB area of MMC card in Interrupt mode by using function
+ HAL_MMC_RPMB_ReadBlocks_IT().
+ The block size should be chosen as multiple of 512 bytes.
+ You can choose the number of blocks by adjusting the "NumberOfBlocks" parameter.
+ After this, you have to ensure that the transfer is done correctly. The check is done
+ through HAL_MMC_GetRPMBError() function for MMC card state.
 
-  *** MMC HAL driver macros list ***
-  ==================================
-  [..]
-    Below the list of most used macros in MMC HAL driver.
+ *** MMC HAL driver macros list ***
+ ==================================
+ [..]
+ Below the list of most used macros in MMC HAL driver.
 
-    (+) __HAL_MMC_ENABLE_IT: Enable the MMC device interrupt
-    (+) __HAL_MMC_DISABLE_IT: Disable the MMC device interrupt
-    (+) __HAL_MMC_GET_FLAG:Check whether the specified MMC flag is set or not
-    (+) __HAL_MMC_CLEAR_FLAG: Clear the MMC's pending flags
+ (+) __HAL_MMC_ENABLE_IT: Enable the MMC device interrupt
+ (+) __HAL_MMC_DISABLE_IT: Disable the MMC device interrupt
+ (+) __HAL_MMC_GET_FLAG:Check whether the specified MMC flag is set or not
+ (+) __HAL_MMC_CLEAR_FLAG: Clear the MMC's pending flags
 
-  [..]
-    (@) You can refer to the MMC HAL driver header file for more useful macros
+ [..]
+ (@) You can refer to the MMC HAL driver header file for more useful macros
 
-  *** Callback registration ***
-  =============================================
-  [..]
-    The compilation define USE_HAL_MMC_REGISTER_CALLBACKS when set to 1
-    allows the user to configure dynamically the driver callbacks.
+ *** Callback registration ***
+ =============================================
+ [..]
+ The compilation define USE_HAL_MMC_REGISTER_CALLBACKS when set to 1
+ allows the user to configure dynamically the driver callbacks.
 
-    Use Functions HAL_MMC_RegisterCallback() to register a user callback,
-    it allows to register following callbacks:
-      (+) TxCpltCallback : callback when a transmission transfer is completed.
-      (+) RxCpltCallback : callback when a reception transfer is completed.
-      (+) ErrorCallback : callback when error occurs.
-      (+) AbortCpltCallback : callback when abort is completed.
-      (+) Read_DMADblBuf0CpltCallback : callback when the DMA reception of first buffer is completed.
-      (+) Read_DMADblBuf1CpltCallback : callback when the DMA reception of second buffer is completed.
-      (+) Write_DMADblBuf0CpltCallback : callback when the DMA transmission of first buffer is completed.
-      (+) Write_DMADblBuf1CpltCallback : callback when the DMA transmission of second buffer is completed.
-      (+) MspInitCallback    : MMC MspInit.
-      (+) MspDeInitCallback  : MMC MspDeInit.
-    This function takes as parameters the HAL peripheral handle, the Callback ID
-    and a pointer to the user callback function.
+ Use Functions HAL_MMC_RegisterCallback() to register a user callback,
+ it allows to register following callbacks:
+ (+) TxCpltCallback : callback when a transmission transfer is completed.
+ (+) RxCpltCallback : callback when a reception transfer is completed.
+ (+) ErrorCallback : callback when error occurs.
+ (+) AbortCpltCallback : callback when abort is completed.
+ (+) Read_DMADblBuf0CpltCallback : callback when the DMA reception of first buffer is completed.
+ (+) Read_DMADblBuf1CpltCallback : callback when the DMA reception of second buffer is completed.
+ (+) Write_DMADblBuf0CpltCallback : callback when the DMA transmission of first buffer is completed.
+ (+) Write_DMADblBuf1CpltCallback : callback when the DMA transmission of second buffer is completed.
+ (+) MspInitCallback    : MMC MspInit.
+ (+) MspDeInitCallback  : MMC MspDeInit.
+ This function takes as parameters the HAL peripheral handle, the Callback ID
+ and a pointer to the user callback function.
 
-    Use function HAL_MMC_UnRegisterCallback() to reset a callback to the default
-    weak (overridden) function. It allows to reset following callbacks:
-      (+) TxCpltCallback : callback when a transmission transfer is completed.
-      (+) RxCpltCallback : callback when a reception transfer is completed.
-      (+) ErrorCallback : callback when error occurs.
-      (+) AbortCpltCallback : callback when abort is completed.
-      (+) Read_DMADblBuf0CpltCallback : callback when the DMA reception of first buffer is completed.
-      (+) Read_DMADblBuf1CpltCallback : callback when the DMA reception of second buffer is completed.
-      (+) Write_DMADblBuf0CpltCallback : callback when the DMA transmission of first buffer is completed.
-      (+) Write_DMADblBuf1CpltCallback : callback when the DMA transmission of second buffer is completed.
-      (+) MspInitCallback    : MMC MspInit.
-      (+) MspDeInitCallback  : MMC MspDeInit.
-    This function) takes as parameters the HAL peripheral handle and the Callback ID.
+ Use function HAL_MMC_UnRegisterCallback() to reset a callback to the default
+ weak (overridden) function. It allows to reset following callbacks:
+ (+) TxCpltCallback : callback when a transmission transfer is completed.
+ (+) RxCpltCallback : callback when a reception transfer is completed.
+ (+) ErrorCallback : callback when error occurs.
+ (+) AbortCpltCallback : callback when abort is completed.
+ (+) Read_DMADblBuf0CpltCallback : callback when the DMA reception of first buffer is completed.
+ (+) Read_DMADblBuf1CpltCallback : callback when the DMA reception of second buffer is completed.
+ (+) Write_DMADblBuf0CpltCallback : callback when the DMA transmission of first buffer is completed.
+ (+) Write_DMADblBuf1CpltCallback : callback when the DMA transmission of second buffer is completed.
+ (+) MspInitCallback    : MMC MspInit.
+ (+) MspDeInitCallback  : MMC MspDeInit.
+ This function) takes as parameters the HAL peripheral handle and the Callback ID.
 
-    By default, after the HAL_MMC_Init and if the state is HAL_MMC_STATE_RESET
-    all callbacks are reset to the corresponding legacy weak (overridden) functions.
-    Exception done for MspInit and MspDeInit callbacks that are respectively
-    reset to the legacy weak (overridden) functions in the HAL_MMC_Init
-    and HAL_MMC_DeInit only when these callbacks are null (not registered beforehand).
-    If not, MspInit or MspDeInit are not null, the HAL_MMC_Init and HAL_MMC_DeInit
-    keep and use the user MspInit/MspDeInit callbacks (registered beforehand)
+ By default, after the HAL_MMC_Init and if the state is HAL_MMC_STATE_RESET
+ all callbacks are reset to the corresponding legacy weak (overridden) functions.
+ Exception done for MspInit and MspDeInit callbacks that are respectively
+ reset to the legacy weak (overridden) functions in the HAL_MMC_Init
+ and HAL_MMC_DeInit only when these callbacks are null (not registered beforehand).
+ If not, MspInit or MspDeInit are not null, the HAL_MMC_Init and HAL_MMC_DeInit
+ keep and use the user MspInit/MspDeInit callbacks (registered beforehand)
 
-    Callbacks can be registered/unregistered in READY state only.
-    Exception done for MspInit/MspDeInit callbacks that can be registered/unregistered
-    in READY or RESET state, thus registered (user) MspInit/DeInit callbacks can be used
-    during the Init/DeInit.
-    In that case first register the MspInit/MspDeInit user callbacks
-    using HAL_MMC_RegisterCallback before calling HAL_MMC_DeInit
-    or HAL_MMC_Init function.
+ Callbacks can be registered/unregistered in READY state only.
+ Exception done for MspInit/MspDeInit callbacks that can be registered/unregistered
+ in READY or RESET state, thus registered (user) MspInit/DeInit callbacks can be used
+ during the Init/DeInit.
+ In that case first register the MspInit/MspDeInit user callbacks
+ using HAL_MMC_RegisterCallback before calling HAL_MMC_DeInit
+ or HAL_MMC_Init function.
 
-    When The compilation define USE_HAL_MMC_REGISTER_CALLBACKS is set to 0 or
-    not defined, the callback registering feature is not available
-    and weak (overridden) callbacks are used.
+ When The compilation define USE_HAL_MMC_REGISTER_CALLBACKS is set to 0 or
+ not defined, the callback registering feature is not available
+ and weak (overridden) callbacks are used.
 
-  @endverbatim
-  ******************************************************************************
-  */
+ @endverbatim
+ ******************************************************************************
+ */
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32h7xx_hal.h"
 
 /** @addtogroup STM32H7xx_HAL_Driver
-  * @{
-  */
+ * @{
+ */
 
 /** @defgroup MMC MMC
-  * @brief MMC HAL module driver
-  * @{
-  */
+ * @brief MMC HAL module driver
+ * @{
+ */
 
 #if defined (SDMMC1) || defined (SDMMC2)
 #ifdef HAL_MMC_MODULE_ENABLED
@@ -5956,9 +5956,9 @@ __weak void HAL_MMCEx_Write_DMADoubleBuf1CpltCallback(MMC_HandleTypeDef *hmmc)
 #endif /* SDMMC1 || SDMMC2 */
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /**
-  * @}
-  */
+ * @}
+ */

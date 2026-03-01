@@ -110,7 +110,6 @@ extern "C" {
 #endif
 #endif /* MBEDTLS_PLATFORM_NO_STD_FUNCTIONS */
 
-
 /* \} name SECTION: Module settings */
 
 /*
@@ -320,9 +319,8 @@ int mbedtls_platform_set_nv_seed(
  */
 typedef struct mbedtls_platform_context
 {
-    char dummy; /**< A placeholder member, as empty structs are not portable. */
-}
-mbedtls_platform_context;
+	char dummy; /**< A placeholder member, as empty structs are not portable. */
+} mbedtls_platform_context;
 
 #else
 #include "platform_alt.h"
@@ -343,7 +341,7 @@ mbedtls_platform_context;
  *
  * \return  \c 0 on success.
  */
-int mbedtls_platform_setup( mbedtls_platform_context *ctx );
+int mbedtls_platform_setup(mbedtls_platform_context *ctx);
 /**
  * \brief   This function performs any platform teardown operations.
  *
@@ -358,7 +356,7 @@ int mbedtls_platform_setup( mbedtls_platform_context *ctx );
  * \param   ctx     The platform context.
  *
  */
-void mbedtls_platform_teardown( mbedtls_platform_context *ctx );
+void mbedtls_platform_teardown(mbedtls_platform_context *ctx);
 
 #ifdef __cplusplus
 }

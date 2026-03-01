@@ -1,49 +1,49 @@
 /**
-  ******************************************************************************
-  * @file    stm32h7xx_hal_mmc_ex.c
-  * @author  MCD Application Team
-  * @brief   MMC card Extended HAL module driver.
-  *          This file provides firmware functions to manage the following
-  *          functionalities of the Secure Digital (MMC) peripheral:
-  *           + Extended features functions
-  *
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  @verbatim
-  ==============================================================================
-                        ##### How to use this driver #####
-  ==============================================================================
-  [..]
-   The MMC Extension HAL driver can be used as follows:
-   (+) Configure Buffer0 and Buffer1 start address and Buffer size using HAL_MMCEx_ConfigDMAMultiBuffer() function.
+ ******************************************************************************
+ * @file    stm32h7xx_hal_mmc_ex.c
+ * @author  MCD Application Team
+ * @brief   MMC card Extended HAL module driver.
+ *          This file provides firmware functions to manage the following
+ *          functionalities of the Secure Digital (MMC) peripheral:
+ *           + Extended features functions
+ *
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2017 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ @verbatim
+ ==============================================================================
+ ##### How to use this driver #####
+ ==============================================================================
+ [..]
+ The MMC Extension HAL driver can be used as follows:
+ (+) Configure Buffer0 and Buffer1 start address and Buffer size using HAL_MMCEx_ConfigDMAMultiBuffer() function.
 
-   (+) Start Read and Write for multibuffer mode using HAL_MMCEx_ReadBlocksDMAMultiBuffer() and
-       HAL_MMCEx_WriteBlocksDMAMultiBuffer() functions.
+ (+) Start Read and Write for multibuffer mode using HAL_MMCEx_ReadBlocksDMAMultiBuffer() and
+ HAL_MMCEx_WriteBlocksDMAMultiBuffer() functions.
 
-  @endverbatim
-  ******************************************************************************
-  */
+ @endverbatim
+ ******************************************************************************
+ */
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32h7xx_hal.h"
 
 /** @addtogroup STM32H7xx_HAL_Driver
-  * @{
-  */
+ * @{
+ */
 
 /** @defgroup MMCEx MMCEx
-  * @brief MMC Extended HAL module driver
-  * @{
-  */
+ * @brief MMC Extended HAL module driver
+ * @{
+ */
 
 #if defined (SDMMC1) || defined (SDMMC2)
 #ifdef HAL_MMC_MODULE_ENABLED
@@ -345,9 +345,9 @@ HAL_StatusTypeDef HAL_MMCEx_ChangeDMABuffer(MMC_HandleTypeDef *hmmc, HAL_MMCEx_D
 #endif /* SDMMC1 || SDMMC2 */
 
 /**
-  * @}
-  */
+ * @}
+ */
 
 /**
-  * @}
-  */
+ * @}
+ */

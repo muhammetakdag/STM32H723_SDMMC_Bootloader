@@ -45,7 +45,7 @@ extern "C" {
  */
 struct mbedtls_timing_hr_time
 {
-    unsigned char opaque[32];
+	unsigned char opaque[32];
 };
 
 /**
@@ -53,9 +53,9 @@ struct mbedtls_timing_hr_time
  */
 typedef struct mbedtls_timing_delay_context
 {
-    struct mbedtls_timing_hr_time   timer;
-    uint32_t                        int_ms;
-    uint32_t                        fin_ms;
+	struct mbedtls_timing_hr_time timer;
+	uint32_t int_ms;
+	uint32_t fin_ms;
 } mbedtls_timing_delay_context;
 
 #else  /* MBEDTLS_TIMING_ALT */
@@ -74,7 +74,7 @@ extern volatile int mbedtls_timing_alarmed;
  * \note           This value starts at an unspecified origin and
  *                 may wrap around.
  */
-unsigned long mbedtls_timing_hardclock( void );
+unsigned long mbedtls_timing_hardclock(void);
 
 /**
  * \brief          Return the elapsed time in milliseconds
@@ -93,7 +93,8 @@ unsigned long mbedtls_timing_hardclock( void );
  *                 get_timer(0) }` the value time1+time2 is only approximately
  *                 the delay since the first reset.
  */
-unsigned long mbedtls_timing_get_timer( struct mbedtls_timing_hr_time *val, int reset );
+unsigned long mbedtls_timing_get_timer(struct mbedtls_timing_hr_time *val,
+		int reset);
 
 /**
  * \brief          Setup an alarm clock
@@ -105,7 +106,7 @@ unsigned long mbedtls_timing_get_timer( struct mbedtls_timing_hr_time *val, int 
  *                 context, this means one for the whole process, not one per
  *                 thread.
  */
-void mbedtls_set_alarm( int seconds );
+void mbedtls_set_alarm(int seconds);
 
 /**
  * \brief          Set a pair of delays to watch
@@ -121,7 +122,7 @@ void mbedtls_set_alarm( int seconds );
  * \note           To set a single delay, either use \c mbedtls_timing_set_timer
  *                 directly or use this function with int_ms == fin_ms.
  */
-void mbedtls_timing_set_delay( void *data, uint32_t int_ms, uint32_t fin_ms );
+void mbedtls_timing_set_delay(void *data, uint32_t int_ms, uint32_t fin_ms);
 
 /**
  * \brief          Get the status of delays
@@ -135,7 +136,7 @@ void mbedtls_timing_set_delay( void *data, uint32_t int_ms, uint32_t fin_ms );
  *                  1 if only the intermediate delay is passed,
  *                  2 if the final delay is passed.
  */
-int mbedtls_timing_get_delay( void *data );
+int mbedtls_timing_get_delay(void *data);
 
 #if defined(MBEDTLS_SELF_TEST)
 /**
@@ -143,7 +144,7 @@ int mbedtls_timing_get_delay( void *data );
  *
  * \return         0 if successful, or 1 if a test failed
  */
-int mbedtls_timing_self_test( int verbose );
+int mbedtls_timing_self_test(int verbose);
 #endif
 
 #ifdef __cplusplus

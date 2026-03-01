@@ -1,21 +1,21 @@
 /**
-  ******************************************************************************
-  * @file    stm32h7xx_hal_def.h
-  * @author  MCD Application Team
-  * @brief   This file contains HAL common defines, enumeration, macros and
-  *          structures definitions.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file    stm32h7xx_hal_def.h
+ * @author  MCD Application Team
+ * @brief   This file contains HAL common defines, enumeration, macros and
+ *          structures definitions.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2017 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef STM32H7xx_HAL_DEF
@@ -34,23 +34,19 @@
 /* Exported types ------------------------------------------------------------*/
 
 /**
-  * @brief  HAL Status structures definition
-  */
+ * @brief  HAL Status structures definition
+ */
 typedef enum
 {
-  HAL_OK       = 0x00,
-  HAL_ERROR    = 0x01,
-  HAL_BUSY     = 0x02,
-  HAL_TIMEOUT  = 0x03
+	HAL_OK = 0x00, HAL_ERROR = 0x01, HAL_BUSY = 0x02, HAL_TIMEOUT = 0x03
 } HAL_StatusTypeDef;
 
 /**
-  * @brief  HAL Lock structures definition
-  */
+ * @brief  HAL Lock structures definition
+ */
 typedef enum
 {
-  HAL_UNLOCKED = 0x00,
-  HAL_LOCKED   = 0x01
+	HAL_UNLOCKED = 0x00, HAL_LOCKED = 0x01
 } HAL_LockTypeDef;
 
 /* Exported macro ------------------------------------------------------------*/
@@ -71,26 +67,26 @@ typedef enum
 #endif /* UNUSED */
 
 /** @brief Reset the Handle's State field.
-  * @param __HANDLE__: specifies the Peripheral Handle.
-  * @note  This macro can be used for the following purpose: 
-  *          - When the Handle is declared as local variable; before passing it as parameter
-  *            to HAL_PPP_Init() for the first time, it is mandatory to use this macro 
-  *            to set to 0 the Handle's "State" field.
-  *            Otherwise, "State" field may have any random value and the first time the function 
-  *            HAL_PPP_Init() is called, the low level hardware initialization will be missed
-  *            (i.e. HAL_PPP_MspInit() will not be executed).
-  *          - When there is a need to reconfigure the low level hardware: instead of calling
-  *            HAL_PPP_DeInit() then HAL_PPP_Init(), user can make a call to this macro then HAL_PPP_Init().
-  *            In this later function, when the Handle's "State" field is set to 0, it will execute the function
-  *            HAL_PPP_MspInit() which will reconfigure the low level hardware.
-  * @retval None
-  */
+ * @param __HANDLE__: specifies the Peripheral Handle.
+ * @note  This macro can be used for the following purpose: 
+ *          - When the Handle is declared as local variable; before passing it as parameter
+ *            to HAL_PPP_Init() for the first time, it is mandatory to use this macro 
+ *            to set to 0 the Handle's "State" field.
+ *            Otherwise, "State" field may have any random value and the first time the function 
+ *            HAL_PPP_Init() is called, the low level hardware initialization will be missed
+ *            (i.e. HAL_PPP_MspInit() will not be executed).
+ *          - When there is a need to reconfigure the low level hardware: instead of calling
+ *            HAL_PPP_DeInit() then HAL_PPP_Init(), user can make a call to this macro then HAL_PPP_Init().
+ *            In this later function, when the Handle's "State" field is set to 0, it will execute the function
+ *            HAL_PPP_MspInit() which will reconfigure the low level hardware.
+ * @retval None
+ */
 #define __HAL_RESET_HANDLE_STATE(__HANDLE__) ((__HANDLE__)->State = 0)
 
 #if (USE_RTOS == 1)
   #error " USE_RTOS should be 0 in the current HAL release "
 #else
-  #define __HAL_LOCK(__HANDLE__)                                           \
+#define __HAL_LOCK(__HANDLE__)                                           \
                                 do{                                        \
                                     if((__HANDLE__)->Lock == HAL_LOCKED)   \
                                     {                                      \
@@ -102,12 +98,11 @@ typedef enum
                                     }                                      \
                                   }while (0)
 
-  #define __HAL_UNLOCK(__HANDLE__)                                          \
+#define __HAL_UNLOCK(__HANDLE__)                                          \
                                   do{                                       \
                                       (__HANDLE__)->Lock = HAL_UNLOCKED;    \
                                     }while (0)
 #endif /* USE_RTOS */
-
 
 #if defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050) /* ARM Compiler V6 */
   #ifndef __weak
@@ -117,14 +112,13 @@ typedef enum
     #define __packed  __attribute__((packed))
   #endif
 #elif defined ( __GNUC__ ) && !defined (__CC_ARM) /* GNU Compiler */
-  #ifndef __weak
-    #define __weak   __attribute__((weak))
-  #endif /* __weak */
-  #ifndef __packed
+#ifndef __weak
+#define __weak   __attribute__((weak))
+#endif /* __weak */
+#ifndef __packed
     #define __packed __attribute__((__packed__))
   #endif /* __packed */
 #endif /* __GNUC__ */
-
 
 /* Macro to get variable aligned on 4-bytes, for __ICCARM__ the directive "#pragma data_alignment=4" must be used instead */
 #if defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050) /* ARM Compiler V6 */
@@ -135,12 +129,12 @@ typedef enum
     #define __ALIGN_END      __attribute__ ((aligned (4)))
   #endif
 #elif defined ( __GNUC__ ) && !defined (__CC_ARM) /* GNU Compiler */
-  #ifndef __ALIGN_END
-    #define __ALIGN_END    __attribute__ ((aligned (4)))
-  #endif /* __ALIGN_END */
-  #ifndef __ALIGN_BEGIN
-    #define __ALIGN_BEGIN
-  #endif /* __ALIGN_BEGIN */
+#ifndef __ALIGN_END
+#define __ALIGN_END    __attribute__ ((aligned (4)))
+#endif /* __ALIGN_END */
+#ifndef __ALIGN_BEGIN
+#define __ALIGN_BEGIN
+#endif /* __ALIGN_BEGIN */
 #else
   #ifndef __ALIGN_END
     #define __ALIGN_END
@@ -156,7 +150,7 @@ typedef enum
 
 /* Macro to get variable aligned on 32-bytes,needed for cache maintenance purpose */
 #if defined   (__GNUC__)        /* GNU Compiler */
-  #define ALIGN_32BYTES(buf)  buf __attribute__ ((aligned (32)))                                    
+#define ALIGN_32BYTES(buf)  buf __attribute__ ((aligned (32)))                                    
 #elif defined (__ICCARM__)    /* IAR Compiler */
   #define ALIGN_32BYTES(buf) _Pragma("data_alignment=32") buf  
 #elif defined   (__CC_ARM)      /* ARM Compiler */
@@ -164,8 +158,8 @@ typedef enum
 #endif
 
 /**
-  * @brief  __RAM_FUNC definition
-  */
+ * @brief  __RAM_FUNC definition
+ */
 #if defined ( __CC_ARM   ) || (defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050))
 /* ARM Compiler V4/V5 and V6
    --------------------------
@@ -187,21 +181,21 @@ typedef enum
 
 #elif defined   (  __GNUC__  )
 /* GNU Compiler
-   ------------
-  RAM functions are defined using a specific toolchain attribute
-   "__attribute__((section(".RamFunc")))".
-*/
+ ------------
+ RAM functions are defined using a specific toolchain attribute
+ "__attribute__((section(".RamFunc")))".
+ */
 #define __RAM_FUNC __attribute__((section(".RamFunc")))
 
 #endif
 
 /**
-  * @brief  __NOINLINE definition
-  */
+ * @brief  __NOINLINE definition
+ */
 #if defined ( __CC_ARM   ) || (defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)) || defined   (  __GNUC__  )
 /* ARM V4/V5 and V6 & GNU Compiler
-   -------------------------------
-*/
+ -------------------------------
+ */
 #define __NOINLINE __attribute__ ( (noinline) )
 
 #elif defined ( __ICCARM__ )
@@ -212,11 +206,9 @@ typedef enum
 
 #endif
 
-
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* STM32H7xx_HAL_DEF */
-
 

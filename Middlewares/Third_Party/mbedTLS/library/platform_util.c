@@ -68,11 +68,11 @@
  * mbedtls_platform_zeroize() to use a suitable implementation for their
  * platform and needs.
  */
-static void * (* const volatile memset_func)( void *, int, size_t ) = memset;
+static void* (*const volatile memset_func)(void*, int, size_t) = memset;
 
-void mbedtls_platform_zeroize( void *buf, size_t len )
+void mbedtls_platform_zeroize(void *buf, size_t len)
 {
-    memset_func( buf, 0, len );
+	memset_func(buf, 0, len);
 }
 #endif /* MBEDTLS_PLATFORM_ZEROIZE_ALT */
 
@@ -103,34 +103,34 @@ void mbedtls_platform_zeroize( void *buf, size_t len )
              ( defined(_POSIX_THREAD_SAFE_FUNCTIONS ) &&                     \
                 _POSIX_THREAD_SAFE_FUNCTIONS >= 20112L ) ) */
 
-struct tm *mbedtls_platform_gmtime_r( const mbedtls_time_t *tt,
-                                      struct tm *tm_buf )
+struct tm* mbedtls_platform_gmtime_r(const mbedtls_time_t *tt,
+		struct tm *tm_buf)
 {
 #if defined(_WIN32) && !defined(EFIX64) && !defined(EFI32)
     return( ( gmtime_s( tm_buf, tt ) == 0 ) ? tm_buf : NULL );
 #elif !defined(PLATFORM_UTIL_USE_GMTIME)
     return( gmtime_r( tt, tm_buf ) );
 #else
-    struct tm *lt;
+	struct tm *lt;
 
 #if defined(MBEDTLS_THREADING_C)
     if( mbedtls_mutex_lock( &mbedtls_threading_gmtime_mutex ) != 0 )
         return( NULL );
 #endif /* MBEDTLS_THREADING_C */
 
-    lt = gmtime( tt );
+	lt = gmtime(tt);
 
-    if( lt != NULL )
-    {
-        memcpy( tm_buf, lt, sizeof( struct tm ) );
-    }
+	if (lt != NULL)
+	{
+		memcpy(tm_buf, lt, sizeof(struct tm));
+	}
 
 #if defined(MBEDTLS_THREADING_C)
     if( mbedtls_mutex_unlock( &mbedtls_threading_gmtime_mutex ) != 0 )
         return( NULL );
 #endif /* MBEDTLS_THREADING_C */
 
-    return( ( lt == NULL ) ? NULL : tm_buf );
+	return ((lt == NULL) ? NULL : tm_buf);
 #endif /* _WIN32 && !EFIX64 && !EFI32 */
 }
 #endif /* MBEDTLS_HAVE_TIME_DATE && MBEDTLS_PLATFORM_GMTIME_R_ALT */
